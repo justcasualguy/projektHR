@@ -13,7 +13,7 @@ public class Main {
         MongoCollection<Document> collection = database.getCollection("Employees");
 
 
-        collection.insertOne(EmployeeGenerator.generateManEmployee().toDocument());
+       //collection.insertOne(EmployeeGenerator.generateManEmployee().toDocument());
 
 
         MongoCursor<Document> cur = collection.find().iterator();
