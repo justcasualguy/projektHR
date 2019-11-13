@@ -9,7 +9,9 @@ import java.util.LinkedList;
 public class Employee implements DatabaseObject {
     private String name;
     private String surname;
+    private String gender;
     private LocalDate birthDate;
+    private String personalIdentityNumber;
     private LocalDate employedSince;
     private JobPosition jobPosition;
     private Address address;

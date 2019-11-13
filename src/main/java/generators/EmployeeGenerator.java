@@ -66,15 +66,163 @@ public class EmployeeGenerator {
         return LocalDate.of(year,month,day);
 }
 
-    public static Employee generateEmployee(){
-        File file1 = new File("");
-        String path = file1.getAbsolutePath()+"\\src\\main\\java\\generators\\data\\";
-        file1 = new File(path+"maleNames.txt");
-        File file2 = new File(path+"lastNames.txt");
 
-        return  new Employee(generateValueFromTextFile(file1.getAbsolutePath()),generateValueFromTextFile(file2.getAbsolutePath()),generateBirthDate());
+    public static Employee generateManEmployee(){
+        File names = new File("");
+        String path = names.getAbsolutePath()+"\\src\\main\\java\\generators\\data\\";
+        names = new File(path+"maleNames.txt");
+        File surnames = new File(path+"lastNames.txt");
+
+        return  new Employee(
+                generateValueFromTextFile(names.getAbsolutePath()),
+                generateValueFromTextFile(surnames.getAbsolutePath()),
+                generateBirthDate()
+        );
     }
 
+    public static Employee generateWomanEmployee(){
+        File names = new File("");
+        String path = names.getAbsolutePath()+"\\src\\main\\java\\generators\\data\\";
+        names = new File(path+"femaleNames.txt");
+        File surnames = new File(path+"lastNames.txt");
+
+        String surname = generateValueFromTextFile(surnames.getAbsolutePath());
+
+        StringBuilder builder = new StringBuilder(surname);
+
+        if(surname.charAt(surname.length()-1)=='i')
+            builder.setCharAt(builder.length()-1,'a');
+
+        return  new Employee(
+                generateValueFromTextFile(names.getAbsolutePath()),
+                builder.toString(),
+                generateBirthDate()
+        );
+    }
+
+
+
+    public static String generateWomanPersonalIdentityNumber() {
+        String pesel="";
+        Random generator = new Random();
+        for(int i=0;i<12;i++) {
+            //rok
+            if(i==0) {
+                pesel+=String.valueOf(generator.nextInt(7)+2);
+            }
+            else if(i==1) {
+                if(pesel.charAt(0)!='2')
+                    pesel+=String.valueOf(generator.nextInt(7)+2);
+                else
+                    pesel+=String.valueOf(generator.nextInt(9));
+            }
+            //msc
+
+            else if(i==2)
+                pesel+=String.valueOf(generator.nextInt(1));
+            else if(i==3) {
+                if(pesel.charAt(2)=='1')
+                    pesel+=String.valueOf(generator.nextInt(2));
+                else
+                    pesel+=String.valueOf(generator.nextInt(9)+1);
+            }
+            //dzien
+            else if(i==4) {
+                if(pesel.charAt(3)=='2')
+                    pesel+=String.valueOf(generator.nextInt(2));
+                else
+                    pesel+=String.valueOf(generator.nextInt(3));
+            }
+            else if(i==5) {
+                if(pesel.charAt(3)=='2')
+                    pesel+=String.valueOf(generator.nextInt(8));
+                else if(pesel.charAt(4)=='3'&&(pesel.charAt(3)=='1'||pesel.charAt(3)=='3'||pesel.charAt(3)=='5'
+                        ||pesel.charAt(3)=='7'||pesel.charAt(3)=='8'||pesel.charAt(3)=='0'||(pesel.charAt(3)=='2'&&pesel.charAt(2)=='1')))
+                    pesel+=String.valueOf(generator.nextInt(1));
+                else if(pesel.charAt(4)=='3')
+                    pesel+='0';
+                else
+                    pesel+=String.valueOf(generator.nextInt(9));
+
+
+            }
+            else if(i==10) {
+                int x;
+                do {
+                    x=generator.nextInt(9);
+                }while(x%2!=0);
+                pesel+=String.valueOf(x);
+
+
+            }
+            else {
+                pesel+=String.valueOf(generator.nextInt(9));
+            }
+        }
+
+        return pesel;
+    }
+
+    public static String generateManPersonalIdentityNumber() {
+        String pesel="";
+        Random generator = new Random();
+        for(int i=0;i<12;i++) {
+            //rok
+            if(i==0) {
+                pesel+=String.valueOf(generator.nextInt(7)+2);
+            }
+            else if(i==1) {
+                if(pesel.charAt(0)!='2')
+                    pesel+=String.valueOf(generator.nextInt(7)+2);
+                else
+                    pesel+=String.valueOf(generator.nextInt(9));
+            }
+            //msc
+
+            else if(i==2)
+                pesel+=String.valueOf(generator.nextInt(1));
+            else if(i==3) {
+                if(pesel.charAt(2)=='1')
+                    pesel+=String.valueOf(generator.nextInt(2));
+                else
+                    pesel+=String.valueOf(generator.nextInt(9)+1);
+            }
+            //dzien
+            else if(i==4) {
+                if(pesel.charAt(3)=='2')
+                    pesel+=String.valueOf(generator.nextInt(2));
+                else
+                    pesel+=String.valueOf(generator.nextInt(3));
+            }
+            else if(i==5) {
+                if(pesel.charAt(3)=='2')
+                    pesel+=String.valueOf(generator.nextInt(8));
+                else if(pesel.charAt(4)=='3'&&(pesel.charAt(3)=='1'||pesel.charAt(3)=='3'||pesel.charAt(3)=='5'
+                        ||pesel.charAt(3)=='7'||pesel.charAt(3)=='8'||pesel.charAt(3)=='0'||(pesel.charAt(3)=='2'&&pesel.charAt(2)=='1')))
+                    pesel+=String.valueOf(generator.nextInt(1));
+                else if(pesel.charAt(4)=='3')
+                    pesel+='0';
+                else
+                    pesel+=String.valueOf(generator.nextInt(9));
+
+
+            }
+            else if(i==10) {
+                int x;
+                do {
+                    x=generator.nextInt(9);
+                }while(x%2==0);
+                pesel+=String.valueOf(x);
+
+
+            }
+            else {
+                pesel+=String.valueOf(generator.nextInt(9));
+            }
+        }
+
+        return pesel;
+    }
 
 
 }

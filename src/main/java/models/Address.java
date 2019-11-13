@@ -6,24 +6,18 @@ import org.bson.Document;
 
 public class Address implements DatabaseObject {
     private String country;
-    private String voivodeship; //wojewodztwo
-    private String county; //powiat
-    private String borough; //gmina
+    private String city;
     private String street;
     private String houseNumber;
     private String houseUnitNumber;
-    private String city;
     private String zipcode;
 
-    public Address(String country, String voivodeship, String county, String borough, String street, String houseNumber, String houseUnitNumber, String city, String zipcode) {
+    public Address(String country, String city, String street, String houseNumber, String houseUnitNumber, String zipcode) {
         this.country = country;
-        this.voivodeship = voivodeship;
-        this.county = county;
-        this.borough = borough;
+        this.city = city;
         this.street = street;
         this.houseNumber = houseNumber;
         this.houseUnitNumber = houseUnitNumber;
-        this.city = city;
         this.zipcode = zipcode;
     }
 
@@ -34,30 +28,6 @@ public class Address implements DatabaseObject {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public String getVoivodeship() {
-        return voivodeship;
-    }
-
-    public void setVoivodeship(String voivodeship) {
-        this.voivodeship = voivodeship;
-    }
-
-    public String getCounty() {
-        return county;
-    }
-
-    public void setCounty(String county) {
-        this.county = county;
-    }
-
-    public String getBorough() {
-        return borough;
-    }
-
-    public void setBorough(String borough) {
-        this.borough = borough;
     }
 
     public String getStreet() {
@@ -104,9 +74,6 @@ public class Address implements DatabaseObject {
     @Override
     public Document toDocument(){
        return new Document("country",country)
-               .append("voivodeship",voivodeship)
-               .append("county",county)
-               .append("borough",borough)
                .append("street",street)
                .append("houseNumber",houseNumber)
                .append("houseUnitNumber",houseUnitNumber)

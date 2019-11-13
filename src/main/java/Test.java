@@ -3,6 +3,7 @@ import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import generators.AddressGenerator;
 import generators.EmployeeGenerator;
 import models.Employee;
 
@@ -16,6 +17,7 @@ public class Test {
 
 
     public static void main(String[] args) {
-
+       for(int i=0;i<10;i++)
+        System.out.println(AddressGenerator.generateZipCode());
     }
 }
