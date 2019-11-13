@@ -1,25 +1,20 @@
-import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoCredential;
-import com.mongodb.ServerAddress;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import generators.AddressGenerator;
-import generators.EmployeeGenerator;
-import models.Employee;
-
-import java.io.File;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
+import com.mongodb.client.MongoCollection;
+import dbconnector.DBConnector;
+import login.Login;
+import models.User;
+import org.bson.Document;
+import security.PasswordHasher;
 
 public class Test {
 
 
     public static void main(String[] args) {
-       for(int i=0;i<5;i++) //ten for cos robi
-        System.out.println(AddressGenerator.generateZipCode());
-    }
+        System.out.println(Login.validateLogin("adam","adam"));
+        MongoCollection<Document> collection = DBConnector.getDatabase("Projekt").getCollection("Users");
 
+
+        collection.insertOne(new User("adam", PasswordHasher.hashPassword("adam"),"admin").toDocument());
+        System.out.println("After " + Login.validateLogin("adam","adam"));
+    }
 
 }

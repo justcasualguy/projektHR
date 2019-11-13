@@ -1,64 +1,28 @@
 package login;
 
-import javax.swing.*;
-import java.awt.event.*;
+import com.mongodb.client.model.Filters;
+import dbconnector.DBConnector;
+import org.bson.Document;
+import security.PasswordHasher;
 
-public class Login extends JDialog {
-    private JPanel contentPane;
-    private JButton buttonOK;
-    private JButton buttonCancel;
-    private JPasswordField passwordField1;
-    private JTextField textField1;
+import static com.mongodb.client.model.Filters.and;
 
-    public Login() {
-        setContentPane(contentPane);
-        setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
+public class Login {
 
-        buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
-        });
 
-        buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
 
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
+    public static boolean validateLogin(String username,String password){
+        String passwordHashed = PasswordHasher.hashPassword(password);
+        Document doc = DBConnector.getDatabase("Projekt")
+                .getCollection("Users")
+                .find(and(
+                        Filters.eq("username",username),
+                        Filters.eq("password",PasswordHasher.hashPassword(password))
+                        )
+                ).first();
 
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+    return  doc!=null;
     }
 
-    private void onOK() {
-        // add your code here
-        asasd test= new asasd();
-        test.pack();
-        test.setVisible(true);
-    }
 
-    private void onCancel() {
-        // add your code here if necessary
-        dispose();
-    }
-
-    public static void main(String[] args) {
-        Login dialog = new Login();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
 }
