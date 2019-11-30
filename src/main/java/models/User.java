@@ -2,6 +2,7 @@ package models;
 
 import interfaces.DatabaseObject;
 import org.bson.Document;
+import services.security.PasswordHasher;
 
 public class User implements DatabaseObject {
     private String username;
@@ -10,7 +11,7 @@ public class User implements DatabaseObject {
 
     public User(String username, String password, String role) {
         this.username = username;
-        this.password = password;
+        this.password = PasswordHasher.hashPassword(password);
         this.role = role;
     }
 
