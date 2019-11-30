@@ -8,7 +8,7 @@ import services.security.PasswordHasher;
 import static com.mongodb.client.model.Filters.and;
 
 public class LoginService {
-    private boolean loginSuccessful = false;
+    public static String loggedUser;
     public static boolean validateLogin(String username,String password){
         String passwordHashed = PasswordHasher.hashPassword(password);
         Document doc = DBConnector.getDatabase()
@@ -19,9 +19,16 @@ public class LoginService {
                         )
                 ).first();
 
+
+
+        if(doc!=null) {
+            loggedUser = doc.get("username").toString();
+            return true;
+        }
+        return false;
        // System.out.print(doc.toString());
 
-    return  doc!=null;
+    //return  doc!=null;
     }
 
 }

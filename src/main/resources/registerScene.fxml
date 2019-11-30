@@ -15,7 +15,7 @@
       <Button fx:id="registerButton" layoutX="386.0" layoutY="206.0" mnemonicParsing="false" text="Zarejestruj" onAction="#registerUser"/>
       <Text layoutX="15.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
       <TextField fx:id="emailLabel" layoutX="14.0" layoutY="180.0" prefHeight="25.0" prefWidth="158.0" />
-      <Button fx:id="cancelButton" layoutX="330.0" layoutY="206.0" mnemonicParsing="false" text="Anuluj" />
+      <Button fx:id="cancelButton" layoutX="330.0" layoutY="206.0" mnemonicParsing="false" text="Anuluj" onAction="#cancel"/>
       <Label fx:id="loginErrorLabel" layoutX="49.0" layoutY="14.0" text="Ten login jest już zajęty!" textFill="RED" visible="false" />
       <Label fx:id="passwdErrorLabel" layoutX="49.0" layoutY="66.0" text="Wpisane hasła nie są takie same!" textFill="RED" visible="false" />
       <Label fx:id="emailErrorLabel" layoutX="49.0" layoutY="161.0" text="Podany e-mail jest już zajęty!" textFill="RED" visible="false" />
