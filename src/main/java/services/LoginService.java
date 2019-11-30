@@ -1,19 +1,17 @@
-package login;
+package services;
 
 import com.mongodb.client.model.Filters;
-import dbconnector.DBConnector;
 import org.bson.Document;
-import security.PasswordHasher;
+import services.dbconnector.DBConnector;
+import services.security.PasswordHasher;
 
 import static com.mongodb.client.model.Filters.and;
 
-public class Login {
-
-
-
+public class LoginService {
+    private boolean loginSuccessful = false;
     public static boolean validateLogin(String username,String password){
         String passwordHashed = PasswordHasher.hashPassword(password);
-        Document doc = DBConnector.getDatabase("Projekt")
+        Document doc = DBConnector.getDatabase()
                 .getCollection("Users")
                 .find(and(
                         Filters.eq("username",username),
@@ -21,8 +19,9 @@ public class Login {
                         )
                 ).first();
 
+       // System.out.print(doc.toString());
+
     return  doc!=null;
     }
-
 
 }

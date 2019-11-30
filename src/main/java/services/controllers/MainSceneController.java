@@ -1,6 +1,9 @@
-package controllers;
+package services.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -36,9 +39,13 @@ public class MainSceneController {
     private CheckBox nightMode;
 
     @FXML
-    private boolean addUser(){
-        Stage addUserWindow = new Stage();
-return true;
+    private void addUser() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("/registerScene.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+    stage.show();
+        //MainStage.mainStage.setScene(new Scene(root));
+
     }
 
 }

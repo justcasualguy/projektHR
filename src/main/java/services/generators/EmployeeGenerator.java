@@ -1,4 +1,4 @@
-package generators;
+package services.generators;
 
 import models.Employee;
 
@@ -69,7 +69,7 @@ public class EmployeeGenerator {
 
     public static Employee generateManEmployee(){
         File names = new File("");
-        String path = names.getAbsolutePath()+"\\src\\main\\java\\generators\\data\\";
+        String path = names.getAbsolutePath()+"\\src\\main\\java\\services.generators\\data\\";
         names = new File(path+"maleNames.txt");
         File surnames = new File(path+"lastNames.txt");
 
@@ -82,7 +82,7 @@ public class EmployeeGenerator {
 
     public static Employee generateWomanEmployee(){
         File names = new File("");
-        String path = names.getAbsolutePath()+"\\src\\main\\java\\generators\\data\\";
+        String path = names.getAbsolutePath()+"\\src\\main\\java\\services.generators\\data\\";
         names = new File(path+"femaleNames.txt");
         File surnames = new File(path+"lastNames.txt");
 
