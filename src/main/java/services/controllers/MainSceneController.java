@@ -25,6 +25,7 @@ public class MainSceneController implements Initializable {
 private LoginController loginController;
 
     private Stage addUserStage;
+    private Stage tableViewStage;
 
     @FXML
     private Label whoIsLoggedIn;
@@ -69,7 +70,16 @@ private LoginController loginController;
         //MainStage.mainStage.setScene(new Scene(root));
 
     }
-
+    @FXML
+    public void seekEmployee() throws Exception
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("/userTableView.fxml"));
+        tableViewStage = new Stage();
+        tableViewStage.initModality(Modality.WINDOW_MODAL);
+        tableViewStage.initOwner(MainStage.mainStage.getScene().getWindow());
+        tableViewStage.setScene((new Scene(root)));
+        tableViewStage.show();
+    }
     @FXML
     private void logout() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/loginScene.fxml"));
@@ -160,5 +170,7 @@ private LoginController loginController;
     public void setNightMode(CheckBox nightMode) {
         this.nightMode = nightMode;
     }
+
+
     //</editor-fold>
 }

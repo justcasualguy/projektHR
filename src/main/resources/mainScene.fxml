@@ -44,7 +44,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="seekEmployeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Wyszukaj&#10;pracownika&#10;" textAlignment="CENTER">
+            <Button fx:id="seekEmployeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Wyszukaj&#10;pracownika&#10;" textAlignment="CENTER" onAction="#seekEmployee">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
