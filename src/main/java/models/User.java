@@ -8,11 +8,13 @@ public class User implements DatabaseObject {
     private String username;
     private String password;
     private String role;
+    private String email;
 
-    public User(String username, String password, String role) {
+    public User(String username, String password, String email, String role) {
         this.username = username;
         this.password = PasswordHasher.hashPassword(password);
         this.role = role;
+        this.email=email;
     }
 
 
@@ -46,6 +48,7 @@ public class User implements DatabaseObject {
     public Document toDocument() {
         return new Document("username",username)
                 .append("password",password)
+                .append("email",email)
                 .append("role",role);
     }
 }

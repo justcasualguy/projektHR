@@ -43,11 +43,52 @@ public class LoginController {
        ////////////////////////////// END FOR TESTS
         else {
             Parent root = FXMLLoader.load(getClass().getResource("/mainScene.fxml"));
-            MainStage.mainStage.setScene(new Scene(root));
+
+           MainStage.mainStage.setScene(new Scene(root));
 
         }
             return true;
     }
+    //<editor-fold desc="G&S">
+    public String getErrorInvalidCredentials() {
+        return errorInvalidCredentials;
+    }
 
+    public void setErrorInvalidCredentials(String errorInvalidCredentials) {
+        this.errorInvalidCredentials = errorInvalidCredentials;
+    }
 
+    public Button getLoginButton() {
+        return loginButton;
+
+    }
+
+    public void setLoginButton(Button loginButton) {
+        this.loginButton = loginButton;
+    }
+
+    public TextField getLoginLabel() {
+        return loginLabel;
+    }
+
+    public void setLoginLabel(TextField loginLabel) {
+        this.loginLabel = loginLabel;
+    }
+
+    public PasswordField getPasswdLabel() {
+        return passwdLabel;
+    }
+
+    public void setPasswdLabel(PasswordField passwdLabel) {
+        this.passwdLabel = passwdLabel;
+    }
+
+    public Label getLoginErrorLabel() {
+        return loginErrorLabel;
+    }
+
+    public void setLoginErrorLabel(Label loginErrorLabel) {
+        this.loginErrorLabel = loginErrorLabel;
+    }
+    //</editor-fold>
 }
