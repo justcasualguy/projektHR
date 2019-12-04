@@ -38,6 +38,8 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         DBConnector.connect("Projekt");
+//        DBConnector.addCollection("Users");
+
         Parent root = FXMLLoader.load(getClass().getResource("loginScene.fxml"));
 
 

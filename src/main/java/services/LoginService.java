@@ -1,34 +1,30 @@
 package services;
 
-import com.mongodb.client.model.Filters;
+import models.User;
 import org.bson.Document;
+import org.mongodb.morphia.query.Query;
 import services.dbconnector.DBConnector;
 import services.security.PasswordHasher;
-
-import static com.mongodb.client.model.Filters.and;
 
 public class LoginService {
     public static String loggedUser;
     public static boolean validateLogin(String username,String password){
         String passwordHashed = PasswordHasher.hashPassword(password);
-        Document doc = DBConnector.getDatabase()
-                .getCollection("Users")
-                .find(and(
-                        Filters.eq("username",username),
-                        Filters.eq("password",PasswordHasher.hashPassword(password))
-                        )
-                ).first();
+        Document doc = null;
+
+        Query<User> query  = DBConnector
+                .getDatastore()
+                .createQuery(User.class)
+                .field("username").equal(username)
+                .field("password").equal(PasswordHasher.hashPassword(password));
 
 
-
-        if(doc!=null) {
-            loggedUser = doc.get("username").toString();
+        if(query.get()!=null) {
+            loggedUser = query.get().getUsername();
             return true;
         }
         return false;
-       // System.out.print(doc.toString());
 
-    //return  doc!=null;
     }
 
 }
