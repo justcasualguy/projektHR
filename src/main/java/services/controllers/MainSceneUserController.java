@@ -61,7 +61,7 @@ private LoginController loginController;
 
     @FXML
     private void addEmployee() throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/registerScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/addEmployeeScene.fxml"));
         addEmployeeStage = new Stage();
         addEmployeeStage.initModality(Modality.WINDOW_MODAL);
         addEmployeeStage.initOwner(MainStage.mainStage.getScene().getWindow());

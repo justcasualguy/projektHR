@@ -29,7 +29,7 @@
    <left>
       <VBox prefHeight="560.0" prefWidth="111.0" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="addEmployeeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Dodaj &#10;pracownika" textAlignment="CENTER" onAction="">
+            <Button fx:id="addEmployeeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Dodaj &#10;pracownika" textAlignment="CENTER" onAction="#addEmployee">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
