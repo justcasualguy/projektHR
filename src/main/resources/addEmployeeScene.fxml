@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.addEmployeeController">
+   <children>
+      <Button fx:id="addEmployeeButton" layoutX="453.0" layoutY="416.0" mnemonicParsing="false" text="Dodaj" />
+      <Button fx:id="cancelButton" layoutX="393.0" layoutY="416.0" mnemonicParsing="false" text="Anuluj" />
+      <Label layoutX="184.0" layoutY="14.0" prefHeight="25.0" prefWidth="148.0" text="Dodawanie pracownika" />
+      <TextField fx:id="imieTextField" layoutX="14.0" layoutY="63.0" />
+      <TextField fx:id="nazwiskoTextField" layoutX="14.0" layoutY="112.0" />
+      <TextField fx:id="dayBirthdayTextField" layoutX="14.0" layoutY="162.0" prefHeight="25.0" prefWidth="41.0" promptText="dd" />
+      <TextField fx:id="adresTextField" layoutX="14.0" layoutY="211.0" />
+      <Text layoutX="15.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imie:" />
+      <Text layoutX="14.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko:" />
+      <Text layoutX="14.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data urodzenia:" />
+      <Text layoutX="14.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adres:" />
+      <TextField fx:id="monthBirthdayTextField" layoutX="61.0" layoutY="162.0" prefHeight="25.0" prefWidth="41.0" promptText="mm" />
+      <TextField fx:id="yearBirthdayTextField" layoutX="105.0" layoutY="162.0" prefHeight="25.0" prefWidth="59.0" promptText="yyyy" />
+      <Text layoutX="56.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+      <Text layoutX="100.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+      <TextField fx:id="dayWorkTextField" layoutX="13.0" layoutY="262.0" prefHeight="25.0" prefWidth="41.0" promptText="dd" />
+      <Text layoutX="13.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pracuje od:" />
+      <TextField fx:id="monthWorkTextField" layoutX="60.0" layoutY="262.0" prefHeight="25.0" prefWidth="41.0" promptText="mm" />
+      <TextField fx:id="yearWorkTextField" layoutX="104.0" layoutY="262.0" prefHeight="25.0" prefWidth="59.0" promptText="yyyy" />
+      <Text layoutX="55.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+      <Text layoutX="99.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+   </children>
+</Pane>
