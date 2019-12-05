@@ -33,7 +33,6 @@ public class LoginController {
             loginErrorLabel.setText(errorInvalidCredentials);
             loginErrorLabel.setVisible(true);
         }
-
  ///////// FOR TESTS
 //        if(!(loginLabel.getText().equals("a")&&passwdLabel.getText().equals("a"))) {
 //            loginErrorLabel.setText("Invalid credentials");
