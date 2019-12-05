@@ -73,7 +73,7 @@ private LoginController loginController;
     @FXML
     public void seekEmployee() throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/userTableView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/employeeTableView.fxml"));
         tableViewStage = new Stage();
         tableViewStage.initModality(Modality.WINDOW_MODAL);
         tableViewStage.initOwner(MainStage.mainStage.getScene().getWindow());

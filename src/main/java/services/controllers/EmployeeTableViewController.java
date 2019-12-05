@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import models.User;
+import models.Employee;
 import services.dbconnector.DBConnector;
 
 import java.net.URL;
@@ -25,16 +25,16 @@ public class EmployeeTableViewController implements Initializable {
     private Label label;
 
     @FXML
-    private TableView<User> findEmployeeTableView;
+    private TableView<Employee> findEmployeeTableView;
 
     @FXML
-    private TableColumn<User, String> nameColumn;
+    private TableColumn<Employee, String> nameColumn;
 
     @FXML
-    private TableColumn<User, String> surnameColumn;
+    private TableColumn<Employee, String> surnameColumn;
 
     @FXML
-    private TableColumn<User, String> roleColumn;
+    private TableColumn<Employee, String> birthDateColumn;
 
     @FXML
     private TextField filterField;
@@ -43,32 +43,32 @@ public class EmployeeTableViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
 
-        final ObservableList<User> dataList = FXCollections.observableArrayList();
+        final ObservableList<Employee> dataList = FXCollections.observableArrayList();
 
-        dataList.addAll(DBConnector.getCollectionAsList(User.class));
+        dataList.addAll(DBConnector.getCollectionAsList(Employee.class));
 
-        FilteredList<User> filteredData = new FilteredList<>(dataList, b -> true);
+        FilteredList<Employee> filteredData = new FilteredList<>(dataList, b -> true);
 
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(user -> {
+            filteredData.setPredicate(employee -> {
                 if(newValue == null || newValue.isEmpty()){
                     return true;
                 }
 
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if(user.getUsername().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                if(employee.getName().toLowerCase().indexOf(lowerCaseFilter) != -1){
                     return true;
-                } else return user.getRole().toLowerCase().indexOf(lowerCaseFilter) != -1;
+                } else return employee.getSurname().toLowerCase().indexOf(lowerCaseFilter) != -1;
             });
 
         });
 
-        SortedList<User> sortedData = new SortedList<>(filteredData);
+        SortedList<Employee> sortedData = new SortedList<>(filteredData);
 
         sortedData.comparatorProperty().bind(findEmployeeTableView.comparatorProperty());
 
@@ -95,43 +95,43 @@ public class EmployeeTableViewController implements Initializable {
         this.filterField = filterField;
     }
 
-    public TableView<User> getFindEmployeeTableView()
+    public TableView<Employee> getFindEmployeeTableView()
     {
         return findEmployeeTableView;
     }
 
-    public void setFindEmployeeTableView(TableView<User> findEmployeeTableView)
+    public void setFindEmployeeTableView(TableView<Employee> findEmployeeTableView)
     {
         this.findEmployeeTableView = findEmployeeTableView;
     }
 
-    public TableColumn<User, String> getNameColumn()
+    public TableColumn<Employee, String> getNameColumn()
     {
         return nameColumn;
     }
 
-    public void setNameColumn(TableColumn<User, String> nameColumn)
+    public void setNameColumn(TableColumn<Employee, String> nameColumn)
     {
         this.nameColumn = nameColumn;
     }
 
-    public TableColumn<User, String> getSurnameColumn()
+    public TableColumn<Employee, String> getSurnameColumn()
     {
         return surnameColumn;
     }
 
-    public void setSurnameColumn(TableColumn<User, String> surnameColumn)
+    public void setSurnameColumn(TableColumn<Employee, String> surnameColumn)
     {
         this.surnameColumn = surnameColumn;
     }
 
-    public TableColumn<User, String> getRoleColumn()
+    public TableColumn<Employee, String> getBirthDateColumn()
     {
-        return roleColumn;
+        return birthDateColumn;
     }
 
-    public void setRoleColumn(TableColumn<User, String> roleColumn)
+    public void setBirthDateColumn(TableColumn<Employee, String> birthDateColumn)
     {
-        this.roleColumn = roleColumn;
+        this.birthDateColumn = birthDateColumn;
     }
 }

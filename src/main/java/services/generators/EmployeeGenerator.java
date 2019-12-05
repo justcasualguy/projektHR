@@ -73,11 +73,12 @@ public class EmployeeGenerator {
         names = new File(path+"maleNames.txt");
         File surnames = new File(path+"lastNames.txt");
 
-        return  new Employee(
-                generateValueFromTextFile(names.getAbsolutePath()),
-                generateValueFromTextFile(surnames.getAbsolutePath()),
-                generateBirthDate()
-        );
+//        return  new Employee(
+//                generateValueFromTextFile(names.getAbsolutePath()),
+//                generateValueFromTextFile(surnames.getAbsolutePath()),
+//                generateBirthDate()
+//        );
+        return null;
     }
 
     public static Employee generateWomanEmployee(){
@@ -93,11 +94,12 @@ public class EmployeeGenerator {
         if(surname.charAt(surname.length()-1)=='i')
             builder.setCharAt(builder.length()-1,'a');
 
-        return  new Employee(
-                generateValueFromTextFile(names.getAbsolutePath()),
-                builder.toString(),
-                generateBirthDate()
-        );
+        return null;
+//        return  new Employee(
+//                generateValueFromTextFile(names.getAbsolutePath()),
+//                builder.toString(),
+//                generateBirthDate()
+//        );
     }
 
 

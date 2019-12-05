@@ -4,7 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import models.User;
+import models.Employee;
 import services.dbconnector.DBConnector;
 
 public class Main extends Application {
@@ -21,9 +21,9 @@ public class Main extends Application {
 
         DBConnector.connect("Projekt");
 //        DBConnector.addCollection("Users");
-       // DBConnector.getDatastore().save(new User("DateTest2","passsword","email","user"));
+      //  DBConnector.getDatastore().save(new User("admin","admin","email","admin"));
         Parent root = FXMLLoader.load(getClass().getResource("loginScene.fxml"));
-        System.out.println(DBConnector.getCollectionAsList(User.class).toString());
+        System.out.println(DBConnector.getCollectionAsList(Employee.class).toString());
 
         Scene scene = new Scene(root);
         mainStage= MainStage.mainStage;

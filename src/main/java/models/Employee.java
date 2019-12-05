@@ -17,7 +17,7 @@ public class Employee implements DatabaseObject {
     private String name;
     private String surname;
     //private String gender;
-    private LocalDate birthDate;
+    private String birthDate;
     private String personalIdentityNumber;
     private LocalDate employedSince;
     private JobPosition jobPosition;
@@ -26,7 +26,10 @@ public class Employee implements DatabaseObject {
     private LinkedList<Rating> ratings;                 //nie dodane do toDocument
     private LinkedList<Qualification> qualifications;                   //nie dodane do toDocument
 
-    public Employee(String name, String surname,  LocalDate birthDate, LocalDate employedSince, JobPosition jobPosition, Address address, LinkedList<JobPosition> careerPath, LinkedList<Rating> ratings, LinkedList<Qualification> qualifications) {
+    public Employee() {
+    }
+
+    public Employee(String name, String surname, String birthDate, LocalDate employedSince, JobPosition jobPosition, Address address, LinkedList<JobPosition> careerPath, LinkedList<Rating> ratings, LinkedList<Qualification> qualifications) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
@@ -38,7 +41,7 @@ public class Employee implements DatabaseObject {
         this.qualifications = qualifications;
     }
 
-    public Employee(String name, String surname, LocalDate birthDate) {
+    public Employee(String name, String surname, String birthDate) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
@@ -79,11 +82,11 @@ public class Employee implements DatabaseObject {
 
 
 
-    public LocalDate getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -140,7 +143,7 @@ public class Employee implements DatabaseObject {
     public Document toDocument() {
         return new Document("name",name)
                 .append("surname",surname)
-                .append("birth date",birthDate.toString());
+                .append("birth date", birthDate);
                 //.append("employed since",employedSince.toString())
               //  .append("job position: ",jobPosition.toDocument());
                 //.append("address",address.toDocument());
