@@ -1,6 +1,5 @@
 package services.controllers;
 
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -87,9 +86,7 @@ public class AddUserController implements Initializable {
         if(isUsernameAvailable())
                 if (checkPasswd())
                     if (isEmailValid()) {
-
-                        MongoCollection<Document> collection = DBConnector.getDatabase().getCollection("Users");
-                        collection.insertOne(new User(usernameLabel.getText(), passwdLabel.getText(), emailLabel.getText(), "user").toDocument());
+                        DBConnector.getDatastore().save(new User(usernameLabel.getText(), passwdLabel.getText(), emailLabel.getText(), "user"));
                         emailErrorLabel.setText("zarejestrowano pomyslnie");
                         emailErrorLabel.setVisible(true);
 

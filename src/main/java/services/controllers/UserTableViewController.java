@@ -12,11 +12,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.User;
+import services.dbconnector.DBConnector;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TableViewController implements Initializable {
+public class UserTableViewController implements Initializable {
 
 
 
@@ -52,7 +53,7 @@ public class TableViewController implements Initializable {
         User u3 = new User("u3", "test", "email3@email.com", "admin");
         User u4 = new User("u4", "test", "email4@email.com", "user");
 
-        dataList.addAll(u1,u2,u3,u4);
+        dataList.addAll(DBConnector.getCollectionAsList(User.class));
 
         FilteredList<User> filteredData = new FilteredList<>(dataList, b -> true);
 
@@ -66,11 +67,7 @@ public class TableViewController implements Initializable {
 
                 if(user.getUsername().toLowerCase().indexOf(lowerCaseFilter) != -1){
                     return true;
-                } else if(user.getRole().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                    return true;
-                }
-                else
-                    return false;
+                } else return user.getRole().toLowerCase().indexOf(lowerCaseFilter) != -1;
             });
 
         });

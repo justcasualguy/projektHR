@@ -7,7 +7,9 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import services.security.PasswordHasher;
 
-@Entity(value = "Users")
+import java.time.LocalDate;
+
+@Entity(value = "Users",noClassnameStored = true)
 public class User implements DatabaseObject {
 
     @Id
@@ -15,7 +17,7 @@ public class User implements DatabaseObject {
     private String username;
     private String password;
     private String role;
-
+    private String registerDate;
 
 
     private String email;
@@ -29,7 +31,10 @@ public class User implements DatabaseObject {
         this.password = PasswordHasher.hashPassword(password);
         this.role = role;
         this.email=email;
+        registerDate = LocalDate.now().toString();
     }
+
+
 
     public ObjectId getPersonId() {
         return personId;
@@ -39,13 +44,7 @@ public class User implements DatabaseObject {
         this.personId = personId;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     //<editor-fold desc="Getters and setters">
     public String getUsername() {
@@ -89,6 +88,6 @@ public class User implements DatabaseObject {
 
     @Override
     public String toString() {
-        return String.format("Nazwa: %s Email: %s Role: %s",username,email,role);
+        return String.format("Nazwa: %s Email: %s Role: %s Register: %s",username,email,role,registerDate);
     }
 }
