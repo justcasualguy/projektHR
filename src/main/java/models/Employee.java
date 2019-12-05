@@ -4,6 +4,7 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -17,6 +18,7 @@ public class Employee implements DatabaseObject {
     private String name;
     private String surname;
     //private String gender;
+    @Property("birth date")
     private String birthDate;
     private String personalIdentityNumber;
     private LocalDate employedSince;
