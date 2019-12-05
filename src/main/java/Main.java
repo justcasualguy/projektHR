@@ -21,7 +21,7 @@ public class Main extends Application {
 
         DBConnector.connect("Projekt");
 //        DBConnector.addCollection("Users");
-       // DBConnector.getDatastore().save(new User("DateTest","passsword","email","user"));
+       // DBConnector.getDatastore().save(new User("DateTest2","passsword","email","user"));
         Parent root = FXMLLoader.load(getClass().getResource("loginScene.fxml"));
         System.out.println(DBConnector.getCollectionAsList(User.class).toString());
 

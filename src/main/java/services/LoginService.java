@@ -7,7 +7,7 @@ import services.dbconnector.DBConnector;
 import services.security.PasswordHasher;
 
 public class LoginService {
-    public static String loggedUser;
+    public static User loggedUser;
     public static boolean validateLogin(String username,String password){
         String passwordHashed = PasswordHasher.hashPassword(password);
         Document doc = null;
@@ -20,7 +20,7 @@ public class LoginService {
 
 
         if(query.get()!=null) {
-            loggedUser = query.get().getUsername();
+            loggedUser = query.get();
             return true;
         }
         return false;

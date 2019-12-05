@@ -8,12 +8,13 @@ import org.mongodb.morphia.annotations.Id;
 import services.security.PasswordHasher;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity(value = "Users",noClassnameStored = true)
 public class User implements DatabaseObject {
 
     @Id
-    public ObjectId personId;
+    public ObjectId id;
     private String username;
     private String password;
     private String role;
@@ -31,17 +32,17 @@ public class User implements DatabaseObject {
         this.password = PasswordHasher.hashPassword(password);
         this.role = role;
         this.email=email;
-        registerDate = LocalDate.now().toString();
+        registerDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/YYYY"));
     }
 
 
 
-    public ObjectId getPersonId() {
-        return personId;
+    public ObjectId getId() {
+        return id;
     }
 
-    public void setPersonId(ObjectId personId) {
-        this.personId = personId;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
 

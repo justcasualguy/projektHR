@@ -42,7 +42,11 @@ public class LoginController {
 //        }
        ////////////////////////////// END FOR TESTS
         else {
-            Parent root = FXMLLoader.load(getClass().getResource("/mainScene.fxml"));
+            Parent root;
+            if(LoginService.loggedUser.getRole().equals("admin"))
+                 root = FXMLLoader.load(getClass().getResource("/mainSceneAdmin.fxml"));
+            else
+                root = FXMLLoader.load(getClass().getResource("/mainSceneUser.fxml"));
 
            MainStage.mainStage.setScene(new Scene(root));
 

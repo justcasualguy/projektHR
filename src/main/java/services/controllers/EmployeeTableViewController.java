@@ -1,5 +1,6 @@
 package services.controllers;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -17,21 +18,20 @@ import services.dbconnector.DBConnector;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UserTableViewController implements Initializable {
-
+public class EmployeeTableViewController implements Initializable {
 
 
     @FXML
     private Label label;
 
     @FXML
-    private TableView<User> findUserTableView;
+    private TableView<User> findEmployeeTableView;
 
     @FXML
-    private TableColumn<User, String> usernameColumn;
+    private TableColumn<User, String> nameColumn;
 
     @FXML
-    private TableColumn<User, String> emailColumn;
+    private TableColumn<User, String> surnameColumn;
 
     @FXML
     private TableColumn<User, String> roleColumn;
@@ -43,8 +43,8 @@ public class UserTableViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
 
         final ObservableList<User> dataList = FXCollections.observableArrayList();
@@ -70,9 +70,9 @@ public class UserTableViewController implements Initializable {
 
         SortedList<User> sortedData = new SortedList<>(filteredData);
 
-        sortedData.comparatorProperty().bind(findUserTableView.comparatorProperty());
+        sortedData.comparatorProperty().bind(findEmployeeTableView.comparatorProperty());
 
-        findUserTableView.setItems(sortedData);
+        findEmployeeTableView.setItems(sortedData);
     }
 
     public Label getLabel()
@@ -95,34 +95,34 @@ public class UserTableViewController implements Initializable {
         this.filterField = filterField;
     }
 
-    public TableView<User> getFindUserTableView()
+    public TableView<User> getFindEmployeeTableView()
     {
-        return findUserTableView;
+        return findEmployeeTableView;
     }
 
-    public void setFindUserTableView(TableView<User> findUserTableView)
+    public void setFindEmployeeTableView(TableView<User> findEmployeeTableView)
     {
-        this.findUserTableView = findUserTableView;
+        this.findEmployeeTableView = findEmployeeTableView;
     }
 
-    public TableColumn<User, String> getUsernameColumn()
+    public TableColumn<User, String> getNameColumn()
     {
-        return usernameColumn;
+        return nameColumn;
     }
 
-    public void setUsernameColumn(TableColumn<User, String> usernameColumn)
+    public void setNameColumn(TableColumn<User, String> nameColumn)
     {
-        this.usernameColumn = usernameColumn;
+        this.nameColumn = nameColumn;
     }
 
-    public TableColumn<User, String> getEmailColumn()
+    public TableColumn<User, String> getSurnameColumn()
     {
-        return emailColumn;
+        return surnameColumn;
     }
 
-    public void setEmailColumn(TableColumn<User, String> emailColumn)
+    public void setSurnameColumn(TableColumn<User, String> surnameColumn)
     {
-        this.emailColumn = emailColumn;
+        this.surnameColumn = surnameColumn;
     }
 
     public TableColumn<User, String> getRoleColumn()

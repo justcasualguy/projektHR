@@ -16,7 +16,7 @@ import services.LoginService;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainSceneController implements Initializable {
+public class MainSceneUserController implements Initializable {
 
 //    MainSceneController(LoginController loginController){
 //        whoIsLoggedIn.setText(loginController.ge);
@@ -24,7 +24,7 @@ public class MainSceneController implements Initializable {
 
 private LoginController loginController;
 
-    private Stage addUserStage;
+    private Stage addEmployeeStage;
     private Stage tableViewStage;
 
     @FXML
@@ -34,7 +34,7 @@ private LoginController loginController;
     private Button logOutButton;
 
     @FXML
-    private Button addUserButton;
+    private Button addEmployeeButton;
 
     @FXML
     private Button removeUserButton;
@@ -56,17 +56,17 @@ private LoginController loginController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        whoIsLoggedIn.setText(LoginService.loggedUser);
+        whoIsLoggedIn.setText(LoginService.loggedUser.getUsername());
     }
 
     @FXML
-    private void addUser() throws Exception{
+    private void addEmployee() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/registerScene.fxml"));
-        addUserStage = new Stage();
-        addUserStage.initModality(Modality.WINDOW_MODAL);
-        addUserStage.initOwner(MainStage.mainStage.getScene().getWindow());
-        addUserStage.setScene(new Scene(root));
-        addUserStage.show();
+        addEmployeeStage = new Stage();
+        addEmployeeStage.initModality(Modality.WINDOW_MODAL);
+        addEmployeeStage.initOwner(MainStage.mainStage.getScene().getWindow());
+        addEmployeeStage.setScene(new Scene(root));
+        addEmployeeStage.show();
         //MainStage.mainStage.setScene(new Scene(root));
 
     }
@@ -115,12 +115,12 @@ private LoginController loginController;
         this.logOutButton = logOutButton;
     }
 
-    public Button getAddUserButton() {
-        return addUserButton;
+    public Button getAddEmployeeButton() {
+        return addEmployeeButton;
     }
 
-    public void setAddUserButton(Button addUserButton) {
-        this.addUserButton = addUserButton;
+    public void setAddEmployeeButton(Button addEmployeeButton) {
+        this.addEmployeeButton = addEmployeeButton;
     }
 
     public Button getRemoveUserButton() {

@@ -1,15 +1,22 @@
 package models;
 import interfaces.DatabaseObject;
 import org.bson.Document;
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
 
-
+@Entity(value = "Employees",noClassnameStored = true)
 public class Employee implements DatabaseObject {
+
+    @Id
+    public ObjectId id;
+
     private String name;
     private String surname;
-    private String gender;
+    //private String gender;
     private LocalDate birthDate;
     private String personalIdentityNumber;
     private LocalDate employedSince;
@@ -38,6 +45,22 @@ public class Employee implements DatabaseObject {
     }
 
     //<editor-fold desc="Getters and setters">
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    public String getPersonalIdentityNumber() {
+        return personalIdentityNumber;
+    }
+
+    public void setPersonalIdentityNumber(String personalIdentityNumber) {
+        this.personalIdentityNumber = personalIdentityNumber;
+    }
+
     public String getName() {
         return name;
     }

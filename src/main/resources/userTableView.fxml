@@ -7,7 +7,7 @@
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.UserTableViewController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TableView fx:id="findEmployeeTableView" layoutX="38.0" layoutY="137.0" prefHeight="309.0" prefWidth="687.0">
+      <TableView fx:id="findUserTableView" layoutX="38.0" layoutY="137.0" prefHeight="309.0" prefWidth="687.0">
         <columns>
           <TableColumn fx:id="usernameColumn" prefWidth="157.0" text="Username" />
             <TableColumn fx:id="emailColumn" prefWidth="167.0" text=" Email" />

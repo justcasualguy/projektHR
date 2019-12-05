@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.MainSceneUserController">
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="whoIsLoggedIn" alignment="BOTTOM_LEFT" contentDisplay="CENTER" text="aa">
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </Label>
+            <Region style="-fx-border-color: grey;" HBox.hgrow="ALWAYS" />
+            <Button fx:id="logOutButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Wyloguj" onAction="#logout"/>
+         </children>
+         <effect>
+            <Reflection />
+         </effect>
+      </HBox>
+   </bottom>
+   <left>
+      <VBox prefHeight="560.0" prefWidth="111.0" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="addEmployeeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Dodaj &#10;pracownika" textAlignment="CENTER" onAction="">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="removeUserButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Usuń&#10;użytkownika" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="editUserButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Edytuj&#10;użytkownika" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="seekEmployeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Wyszukaj&#10;pracownika&#10;" textAlignment="CENTER" onAction="#seekEmployee">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Button">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Button">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Button">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="generateSomethingButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Generuj coś">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <HBox id="test" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="appName" alignment="CENTER_RIGHT" text="HRTech Application">
+               <HBox.margin>
+                  <Insets left="5.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+            <Region HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets bottom="10.0" />
+               </HBox.margin>
+            </Region>
+            <CheckBox fx:id="nightMode" mnemonicParsing="false" text="NightMode">
+               <HBox.margin>
+                  <Insets right="10.0" top="7.0" />
+               </HBox.margin>
+            </CheckBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Untitled Tab 1">
+               <content>
+                  <BarChart>
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+               </content>
+            </Tab>
+          <Tab text="Untitled Tab 2">
+               <content>
+                  <PieChart />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
