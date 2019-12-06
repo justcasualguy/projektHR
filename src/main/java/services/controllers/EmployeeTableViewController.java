@@ -1,21 +1,22 @@
 package services.controllers;
 
 
+import com.mongodb.WriteResult;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Employee;
 import services.dbconnector.DBConnector;
+import services.generators.ErrorGenerator;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EmployeeTableViewController implements Initializable {
@@ -134,4 +135,62 @@ public class EmployeeTableViewController implements Initializable {
     {
         this.birthDateColumn = birthDateColumn;
     }
+
+
+
+    public void refreshTableView()
+    {
+        final ObservableList<Employee> dataList = FXCollections.observableArrayList();
+
+        dataList.addAll(DBConnector.getCollectionAsList(Employee.class));
+
+        FilteredList<Employee> filteredData = new FilteredList<>(dataList, b -> true);
+
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(employee -> {
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(employee.getName().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                    return true;
+                } else return employee.getSurname().toLowerCase().indexOf(lowerCaseFilter) != -1;
+            });
+
+        });
+
+        SortedList<Employee> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(findEmployeeTableView.comparatorProperty());
+
+        findEmployeeTableView.setItems(sortedData);
+    }
+
+    public void deleteEmployeeAction(ActionEvent actionEvent)
+    {
+        Employee selectedEmployee = findEmployeeTableView.getSelectionModel().getSelectedItem();
+        if(selectedEmployee == null)
+        {
+            ErrorGenerator.errorMessage("No employee selected! Please select employee.");
+            return;
+        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Removing employee");
+        alert.setContentText("Are you sure you want to remove employee: " + selectedEmployee.getName() + "?");
+        Optional<ButtonType> answer = alert.showAndWait();
+        Alert info = new Alert(Alert.AlertType.INFORMATION);
+        if(answer.get() == ButtonType.OK)
+        {
+            WriteResult wr = DBConnector.getDatastore().delete(selectedEmployee);
+            info.setContentText("Employee removed succesfully!");
+            info.show();
+            refreshTableView();
+        }
+
+    }
+
+
+
 }
