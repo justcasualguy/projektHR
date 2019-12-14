@@ -1,39 +1,41 @@
 package models;
 import interfaces.DatabaseObject;
 import org.bson.Document;
+import org.mongodb.morphia.annotations.Embedded;
 
-import java.time.LocalDate;
-
-
+@Embedded
 public class JobPosition implements DatabaseObject {
-   private LocalDate since;
-   private LocalDate to;
+   private String since;
+   private String until;
    private String positionName;
    private String department;
 
-    public JobPosition(LocalDate since, LocalDate to, String positionName, String department) {
+    public JobPosition() {
+    }
+
+    public JobPosition(String since, String until, String positionName, String department) {
         this.since = since;
-        this.to = to;
+        this.until = until;
         this.positionName = positionName;
         this.department = department;
     }
 
     //<editor-fold desc="Getters and setters">
 
-    public LocalDate getSince() {
+    public String getSince() {
         return since;
     }
 
-    public void setSince(LocalDate since) {
+    public void setSince(String since) {
         this.since = since;
     }
 
-    public LocalDate getTo() {
-        return to;
+    public String getUntil() {
+        return until;
     }
 
-    public void setTo(LocalDate to) {
-        this.to = to;
+    public void setUntil(String until) {
+        this.until = until;
     }
 
     public String getPositionName() {
@@ -56,8 +58,8 @@ public class JobPosition implements DatabaseObject {
 
     @Override
     public Document toDocument() {
-        return new Document("since",since.toString())
-                .append("to",to.toString())
+        return new Document("since", since)
+                .append("to", until)
                 .append("position name",positionName)
                 .append("depatment",department);
     }

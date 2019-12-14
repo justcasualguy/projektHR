@@ -125,6 +125,7 @@ public class AddUserController implements Initializable {
         }
        else
             return true;
+
     }
 
     public void cancel(){

@@ -1,61 +1,40 @@
-import com.mongodb.MongoClient;
-import models.User;
-import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Morphia;
-import org.mongodb.morphia.dao.BasicDAO;
-import org.mongodb.morphia.query.Query;
-import org.mongodb.morphia.query.QueryResults;
-import services.dbconnector.DBConnector;
-import services.security.PasswordHasher;
+import services.Validators;
 
-import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 
 
 public class Test {
 
-
-
-    public static void main(String[] args) {
-
-         class UserDAO extends BasicDAO<User,String>{
-            public UserDAO(Morphia morphia, MongoClient mongoClient, String dbName){
-                super(mongoClient,morphia,dbName);
-            }
+    public static boolean isValid(String dateStr) {
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
+        try {
+            sdf.parse(dateStr);
+            System.out.println(sdf);
+        } catch (ParseException e) {
+            return false;
         }
+        return true;
+    }
 
-        DBConnector.connect("Projekt");
+    public static void run(){
 
-        Morphia morphia = new Morphia();
-        UserDAO dao = new UserDAO(morphia,DBConnector.getMongoAtlasClient(),"Projekt");
-
-        morphia.mapPackage("models");
-        Datastore datastore = morphia.createDatastore(DBConnector.getMongoAtlasClient(),"Projekt");
-
-
-
-        QueryResults<User> users = dao.find();
-        List<User> userss = DBConnector.getCollectionAsList(User.class);
-
-        Query<User> query  = DBConnector
-                .getDatastore()
-                .createQuery(User.class)
-                .field("username").equal("test")
-                .field("password").equal(PasswordHasher.hashPassword("test"));
-        System.out.println(query.get());
+    }
+    public static void main(String[] args) {
+//    String date = "2000-02-30";
+//        String date2 = "2000-02-27";
+//        String date3 = "31/02/2000";
+//    System.out.println(isValid(date));
+//        System.out.println(isValid(date2));
+//        System.out.println(isValid(date3));
+System.out.println(Validators.validatePhone("1234567891"));
+        System.out.println(Validators.validatePhone("12345678"));
 
 
 
-
-
-
-       //datastore.save(new User("newuser","password","email","user"));
-
-
-//       userss = query.asList();
-//
-//        for(User u : userss)
-//            System.out.println(u);
     }
 
 }

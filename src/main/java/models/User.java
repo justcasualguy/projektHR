@@ -19,7 +19,7 @@ public class User implements DatabaseObject {
     private String password;
     private String role;
     private String registerDate;
-
+    private boolean passwordChangeRequired;
 
     private String email;
 
@@ -33,6 +33,7 @@ public class User implements DatabaseObject {
         this.role = role;
         this.email=email;
         registerDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/YYYY"));
+
     }
 
 
