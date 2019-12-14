@@ -45,8 +45,9 @@ public class Validators {
     }
 
     public static boolean validateSalary(String salary){
-        System.out.println("salary");
         return salary.matches("[1-9]{1}[0-9]{0,},[0-9]{2}");
     }
-
+    public static boolean validateContractType(String contractType){
+        return !(contractType==null);
+    }
 }

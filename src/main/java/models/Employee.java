@@ -67,6 +67,7 @@ public class Employee implements DatabaseObject {
         this.idCardNumber=idCardNumber;
         this.contractType=contractType;
         this.addedBy=addedBy;
+        this.salary=salary;
     }
 
     //<editor-fold desc="Getters and setters">

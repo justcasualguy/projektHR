@@ -112,8 +112,10 @@ public class AddEmployeeController implements Initializable {
                 );
 
 
+
         contractTypeComboBox.setItems(contractOptions);
         currencyComboBox.setItems(currencyOptions);
+        currencyComboBox.getSelectionModel().selectFirst();
 
     }
 
@@ -170,6 +172,11 @@ public class AddEmployeeController implements Initializable {
 
         if(!Validators.validateSalary(salary)){
             messageLabel.setText("Err: wynagrodzenie");
+            messageLabel.setVisible(true);
+            return;
+        }
+        if(!Validators.validateContractType(contractType)){
+            messageLabel.setText("Err: typ kontraktu");
             messageLabel.setVisible(true);
             return;
         }
