@@ -12,7 +12,6 @@ public class Validators {
         sdf.setLenient(false);
         try {
             sdf.parse(date);
-            System.out.println(sdf);
         } catch (ParseException e) {
             return false;
         }
