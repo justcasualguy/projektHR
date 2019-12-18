@@ -23,7 +23,7 @@ public class Main extends Application {
 //        DBConnector.addCollection("Users");
       //  DBConnector.getDatastore().save(new User("admin","admin","email","admin"));
         Parent root = FXMLLoader.load(getClass().getResource("loginScene.fxml"));
-        System.out.println(DBConnector.getCollectionAsList(Employee.class).toString());
+        //System.out.println(DBConnector.getCollectionAsList(Employee.class).toString());
 
         Scene scene = new Scene(root);
         mainStage= MainStage.mainStage;

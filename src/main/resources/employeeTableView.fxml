@@ -16,7 +16,11 @@
           <contextMenu>
               <ContextMenu>
                   <items>
-                      <MenuItem fx:id="deleteUserMenu" mnemonicParsing="false" text="Delete user" onAction="#deleteEmployeeAction"/>
+                      <MenuItem fx:id="deleteEmployeeMenu" mnemonicParsing="false" text="Delete employee" onAction="#deleteEmployeeAction"/>
+                      <MenuItem fx:id="editEmployeeMenu" mnemonicParsing="false" text="Edit employee" />
+                      <MenuItem fx:id="rateEmployeeMenu" mnemonicParsing="false" text="Rate employee" />
+                      <MenuItem fx:id="generateDocumentMenu" mnemonicParsing="false" text="Generuj dokument..." />
+                      <MenuItem fx:id="qualificationMenu" mnemonicParsing="false" text="Kwalifikacje pracownika" />
                       <MenuItem fx:id="viewMoreMenu" mnemonicParsing="false" text="View more..." />
                   </items>
               </ContextMenu>
