@@ -20,19 +20,20 @@ public class User implements DatabaseObject {
     private String role;
     private String registerDate;
     private boolean passwordChangeRequired;
-
+    private String addedBy;
     private String email;
 
 
     public User(){}
 
 
-    public User( String username, String password, String email,  String role) {
+    public User( String username, String password, String email,  String role, String addedBy) {
         this.username = username;
         this.password = PasswordHasher.hashPassword(password);
         this.role = role;
         this.email=email;
         registerDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/YYYY"));
+        this.addedBy=addedBy;
 
     }
 

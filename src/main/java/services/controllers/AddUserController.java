@@ -3,14 +3,12 @@ package services.controllers;
 import com.mongodb.client.model.Filters;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.User;
 import org.bson.Document;
+import services.LoginService;
 import services.dbconnector.DBConnector;
 
 import java.net.URL;
@@ -54,7 +52,11 @@ public class AddUserController implements Initializable {
     @FXML
     private Label emailErrorLabel;
 
+    @FXML
+    private RadioButton adminRadioButton;
 
+    @FXML
+    private RadioButton userRadioButton;
 
     @FXML
     public boolean isUsernameAvailable(){
@@ -82,11 +84,11 @@ public class AddUserController implements Initializable {
 
     @FXML
     public boolean registerUser(){
-
         if(isUsernameAvailable())
                 if (checkPasswd())
                     if (isEmailValid()) {
-                        DBConnector.getDatastore().save(new User(usernameLabel.getText(), passwdLabel.getText(), emailLabel.getText(), "user"));
+                        DBConnector.getDatastore().save(new User(usernameLabel.getText(), passwdLabel.getText(), emailLabel.getText(), selectedRole(), LoginService.loggedUser.getUsername()));
+                        System.out.println(selectedRole());
                         emailErrorLabel.setText("zarejestrowano pomyslnie");
                         emailErrorLabel.setVisible(true);
 
@@ -97,6 +99,18 @@ public class AddUserController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ToggleGroup group = new ToggleGroup();
+
+        userRadioButton.setToggleGroup(group);
+        adminRadioButton.setToggleGroup(group);
+        userRadioButton.setSelected(true);
+    }
+
+    public String selectedRole(){
+        if(userRadioButton.isSelected())
+            return "user";
+        else
+            return "admin";
 
     }
 

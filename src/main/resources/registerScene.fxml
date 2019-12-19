@@ -7,17 +7,19 @@
    <children>
       <Text layoutX="13.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
       <TextField fx:id="usernameLabel" layoutX="13.0" layoutY="33.0" prefHeight="25.0" prefWidth="158.0" />
-      <Button fx:id="checkAvailability" layoutX="182.0" layoutY="33.0" mnemonicParsing="false" text="Sprawdź dostępność" onAction="#isUsernameAvailable"/>
+      <Button fx:id="checkAvailability" layoutX="182.0" layoutY="33.0" mnemonicParsing="false" onAction="#isUsernameAvailable" text="Sprawdź dostępność" />
       <PasswordField fx:id="passwdLabel" layoutX="14.0" layoutY="86.0" prefHeight="25.0" prefWidth="158.0" />
       <Text layoutX="14.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hasło" />
       <PasswordField fx:id="passwdConfirmLabel" layoutX="14.0" layoutY="133.0" prefHeight="25.0" prefWidth="158.0" />
       <Text layoutX="13.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powtórz hasło" />
-      <Button fx:id="registerButton" layoutX="386.0" layoutY="206.0" mnemonicParsing="false" text="Zarejestruj" onAction="#registerUser"/>
+      <Button fx:id="registerButton" layoutX="386.0" layoutY="206.0" mnemonicParsing="false" onAction="#registerUser" text="Zarejestruj" />
       <Text layoutX="15.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
       <TextField fx:id="emailLabel" layoutX="14.0" layoutY="180.0" prefHeight="25.0" prefWidth="158.0" />
-      <Button fx:id="cancelButton" layoutX="330.0" layoutY="206.0" mnemonicParsing="false" text="Anuluj" onAction="#cancel"/>
+      <Button fx:id="cancelButton" layoutX="330.0" layoutY="206.0" mnemonicParsing="false" onAction="#cancel" text="Anuluj" />
       <Label fx:id="loginErrorLabel" layoutX="49.0" layoutY="14.0" text="Ten login jest już zajęty!" textFill="RED" visible="false" />
       <Label fx:id="passwdErrorLabel" layoutX="49.0" layoutY="66.0" text="Wpisane hasła nie są takie same!" textFill="RED" visible="false" />
       <Label fx:id="emailErrorLabel" layoutX="49.0" layoutY="161.0" text="Podany e-mail jest już zajęty!" textFill="RED" visible="false" />
+      <RadioButton fx:id="adminRadioButton" layoutX="112.0" layoutY="210.0" mnemonicParsing="false" text="Administrator" />
+      <RadioButton fx:id="userRadioButton" layoutX="15.0" layoutY="210.0" mnemonicParsing="false" text="Użytkownik" />
    </children>
 </Pane>
