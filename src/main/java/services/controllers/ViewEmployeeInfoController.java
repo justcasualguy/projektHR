@@ -6,12 +6,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import services.generators.ErrorGenerator;
+import models.Address;
+import models.Employee;
+import models.JobPosition;
+import services.LoginService;
+import services.Validators;
+import services.dbconnector.DBConnector;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -98,6 +107,7 @@ public class ViewEmployeeInfoController implements Initializable {
 
     @FXML
     private Button confirmButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -116,9 +126,10 @@ public class ViewEmployeeInfoController implements Initializable {
 
 
 
+
         contractTypeComboBox.setItems(contractOptions);
         currencyComboBox.setItems(currencyOptions);
-        currencyComboBox.getSelectionModel().selectFirst();
+
 
 
         String name = EmployeeTableViewController.selectedEmployee.getName();
@@ -138,6 +149,7 @@ public class ViewEmployeeInfoController implements Initializable {
         String birthDate = EmployeeTableViewController.selectedEmployee.getBirthDate();
         String employedSince = EmployeeTableViewController.selectedEmployee.getEmployedSince();
 
+        currencyComboBox.getSelectionModel().select( currencyOptions.indexOf(salary.split(" ")[1]));
 
         nameTextField.setText(name);
         surnameTextField.setText(surname);
@@ -150,7 +162,7 @@ public class ViewEmployeeInfoController implements Initializable {
         zipCodeTextField.setText(zipCode);
         departmentTextField.setText(department);
         jobPositionTextField.setText(jobPosition);
-        salaryTextField.setText(salary);
+        salaryTextField.setText(salary.split(" ")[0]);
         phoneNumberTextField.setText(phoneNumber);
 
         contractTypeComboBox.setValue(contractType);
@@ -164,16 +176,15 @@ public class ViewEmployeeInfoController implements Initializable {
 
 
 
-
-
-
-
-
     }
 
 
     @FXML
     public void switchEditMode(ActionEvent event){
+
+        confirmButton.setVisible(!confirmButton.isVisible());
+        confirmButton.setDisable(!confirmButton.isDisabled());
+
         nameTextField.setEditable(!nameTextField.isEditable());
         surnameTextField.setEditable(!surnameTextField.isEditable());
         personalIdentityNumberTextField.setEditable(!personalIdentityNumberTextField.isEditable());
@@ -185,9 +196,10 @@ public class ViewEmployeeInfoController implements Initializable {
         zipCodeTextField.setEditable(!zipCodeTextField.isEditable());
         departmentTextField.setEditable(!departmentTextField.isEditable());
         jobPositionTextField.setEditable(!jobPositionTextField.isEditable());
-        salaryTextField.setEditable(!jobPositionTextField.isEditable());
+        salaryTextField.setEditable(!salaryTextField.isEditable());
         phoneNumberTextField.setEditable(!phoneNumberTextField.isEditable());
-
+        currencyComboBox.setDisable(!currencyComboBox.isDisabled());
+        contractTypeComboBox.setDisable(!contractTypeComboBox.isDisabled());
         yearEmployedTextField.setEditable(!yearEmployedTextField.isEditable());
         monthEmployedTextField.setEditable(!monthEmployedTextField.isEditable());
         dayEmployedTextField.setEditable(!dayEmployedTextField.isEditable());
@@ -201,6 +213,7 @@ public class ViewEmployeeInfoController implements Initializable {
         ArrayList<String> edited = new ArrayList<String>();
         String birthDate = yearBirthdayTextField.getText()+"-"+monthBirthdayTextField.getText()+"-"+dayBirthdayTextField.getText();
         String employedSince = yearEmployedTextField.getText()+"-"+monthEmployedTextField.getText()+"-"+dayEmployedTextField.getText();
+        String selectedContractType = contractTypeComboBox.getValue();
 
         if(!nameTextField.getText().equals(EmployeeTableViewController.selectedEmployee.getName()))
             edited.add("Imię");
@@ -224,7 +237,7 @@ public class ViewEmployeeInfoController implements Initializable {
             edited.add("Dział");
         if(!jobPositionTextField.getText().equals(EmployeeTableViewController.selectedEmployee.getJobPosition().getPositionName()))
             edited.add("Stanowisko");
-        if(!salaryTextField.getText().equals(EmployeeTableViewController.selectedEmployee.getSalary()))
+        if(!(salaryTextField.getText()+" "+currencyComboBox.getValue()).equals(EmployeeTableViewController.selectedEmployee.getSalary()))
             edited.add("Wynagrodzenie");
         if(!phoneNumberTextField.getText().equals(EmployeeTableViewController.selectedEmployee.getPhoneNumber()))
             edited.add("Numer telefonu");
@@ -232,31 +245,168 @@ public class ViewEmployeeInfoController implements Initializable {
             edited.add("Data urodzenia");
         if(!employedSince.equals(EmployeeTableViewController.selectedEmployee.getEmployedSince()))
             edited.add("Data urodzenia");
+        if(!selectedContractType.equals(contractTypeComboBox.getValue()))
+            edited.add("Typ kontraktu");
+
 
         return edited;
 
 
     }
     @FXML
-    public void confirmEdition(){
-        StringBuilder message= new StringBuilder();
+    public void confirmChanges(){
+
+        if(!validate())
+            return;
+
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Potwierdź zmiany");
+        window.setMinWidth(300);
+
+        Label message = new Label();
+
+        VBox v = new VBox(20);
+
+        StringBuilder messageString = new StringBuilder();
         ArrayList<String> edited = checkEdited();
-        message.append("Edytowno pola:");
 
 
+        if(checkEdited().size()!=0) {
+            messageString.append("Edytowno pola:");
+            for (String s : edited)
+                messageString.append(String.format("\n %s", s));
+            messageString.append("\n Zapisać zmienione pola?");
 
-        if(checkEdited().size()!=0){
-            for (String s: edited)
-                message.append(String.format("\n %s",s));
-            ErrorGenerator.errorMessage(message.toString());
+            Button close = new Button("Cofnij");
+            Button confirm = new Button("Potwierdź");
+
+            message.setText(messageString.toString());
+            close.setOnAction(e -> window.close());
+            confirm.setOnAction(e -> {
+                upadateEmployee();
+                window.close();});
+            v.getChildren().addAll(message,confirm, close);
+
         }
+        else {
+            messageString.append("Nie wprowadzono zmian");
+            message.setText(messageString.toString());
+            Button close = new Button("Cofnij");
+            close.setOnAction(e -> window.close());
+            v.getChildren().addAll( message,close);
+        }
+
+
+
+
+        v.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(v);
+        window.setScene(scene);
+        window.showAndWait();
+    }
+
+    public boolean validate(){
+
+
+        String name = nameTextField.getText();
+        String surname= surnameTextField.getText();
+        String personalIdentityNumber = personalIdentityNumberTextField.getText();
+        String idCardNumber = idCardNumberTextField.getText();
+        String street = streetTextField.getText();
+        String houseNumber = houseNumberTextField.getText();
+        String city = cityTextField.getText();
+        String country = countryTextField.getText();
+        String zipCode = zipCodeTextField.getText();
+        String department = departmentTextField.getText();
+        String jobPosition = jobPositionTextField.getText();
+        String salary = salaryTextField.getText();
+        String phoneNumber = phoneNumberTextField.getText();
+        String contractType = contractTypeComboBox.getValue();
+        String birthDate = yearBirthdayTextField.getText()+"-"+monthBirthdayTextField.getText()+"-"+dayBirthdayTextField.getText();
+        String employedSince = yearEmployedTextField.getText()+"-"+monthEmployedTextField.getText()+"-"+dayEmployedTextField.getText();
+
+
+
+        if(!Validators.validateDate(birthDate)) {
+            messageLabel.setText("Err: data urodzenia");
+            messageLabel.setVisible(true);
+            return false;
+        }
+
+        if(!Validators.validateDate(employedSince)) {
+            messageLabel.setText("Err: data zatrudnienia");
+            messageLabel.setVisible(true);
+            return false;
+        }
+
+        if(!Validators.validateName(name)){
+            messageLabel.setText("Err: imie");
+            messageLabel.setVisible(true);
+            return false;
+        }
+        if(!Validators.validateSurname(surname)){
+            messageLabel.setText("Err: nazwisko");
+            messageLabel.setVisible(true);
+            return false;
+        }
+
+        if(!Validators.validatePhone(phoneNumber)){
+            messageLabel.setText("Err: numer telefonu");
+            messageLabel.setVisible(true);
+            return false;
+        }
+
+        if(!Validators.validateSalary(salary)){
+            messageLabel.setText("Err: wynagrodzenie");
+            messageLabel.setVisible(true);
+            return false;
+        }
+        if(!Validators.validateContractType(contractType)){
+            messageLabel.setText("Err: typ kontraktu");
+            messageLabel.setVisible(true);
+            return false;
+        }
+        return true;
     }
 
 
-    @FXML
-    void addEmployee(ActionEvent event) {
+    public void upadateEmployee(){
 
+
+
+        String name = nameTextField.getText();
+        String surname= surnameTextField.getText();
+        String personalIdentityNumber = personalIdentityNumberTextField.getText();
+        String idCardNumber = idCardNumberTextField.getText();
+        String street = streetTextField.getText();
+        String houseNumber = houseNumberTextField.getText();
+        String city = cityTextField.getText();
+        String country = countryTextField.getText();
+        String zipCode = zipCodeTextField.getText();
+        String department = departmentTextField.getText();
+        String jobPosition = jobPositionTextField.getText();
+        String salary = salaryTextField.getText();
+        String phoneNumber = phoneNumberTextField.getText();
+        String contractType = contractTypeComboBox.getValue();
+        String birthDate = yearBirthdayTextField.getText()+"-"+monthBirthdayTextField.getText()+"-"+dayBirthdayTextField.getText();
+        String employedSince = yearEmployedTextField.getText()+"-"+monthEmployedTextField.getText()+"-"+dayEmployedTextField.getText();
+
+
+
+
+        Employee employee =  new Employee(name,surname,birthDate,personalIdentityNumber,idCardNumber,employedSince,
+                new JobPosition(employedSince,"",jobPosition,department),salary+" "+currencyComboBox.getValue(),
+                phoneNumber,contractType,
+                new Address(country,city,street,houseNumber,zipCode), LoginService.loggedUser.getUsername()
+        );
+
+        employee.setId(EmployeeTableViewController.selectedEmployee.getId());
+        DBConnector.getDatastore().save(employee);
     }
+
+
 
 
     @FXML

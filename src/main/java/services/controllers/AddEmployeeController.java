@@ -181,7 +181,8 @@ public class AddEmployeeController implements Initializable {
         messageLabel.setText("Dodano");
         messageLabel.setVisible(true);
         Employee employee =  new Employee(name,surname,birthDate,personalIdentityNumber,idCardNumber,employedSince,
-                new JobPosition(employedSince,"",jobPosition,department),salary+currencyComboBox.getValue(),contractType,
+                new JobPosition(employedSince,"",jobPosition,department),salary+" "+currencyComboBox.getValue(),
+                phoneNumber,contractType,
                 new Address(country,city,street,houseNumber,zipCode), LoginService.loggedUser.getUsername()
                 );
 

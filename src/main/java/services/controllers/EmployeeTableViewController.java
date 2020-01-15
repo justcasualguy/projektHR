@@ -49,6 +49,9 @@ public class EmployeeTableViewController implements Initializable {
     @FXML
     private TextField filterField;
 
+    @FXML
+    private Button refreshButton;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)

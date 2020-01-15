@@ -32,6 +32,7 @@ public class Employee implements DatabaseObject {
     private JobPosition jobPosition;
     @Embedded
     private Address address;
+
     private LinkedList<JobPosition> careerPath;                                     //nie dodane do toDocument
     private LinkedList<Rating> ratings;                 //nie dodane do toDocument
     private LinkedList<Qualification> qualifications;                   //nie dodane do toDocument
