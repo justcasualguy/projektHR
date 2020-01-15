@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="239.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.AddJobPositionController">
+   <children>
+      <TextField layoutX="30.0" layoutY="32.0" />
+      <TextField layoutX="30.0" layoutY="79.0" />
+      <TextField fx:id="dayBirthdayTextField" editable="false" layoutX="29.0" layoutY="128.0" prefHeight="25.0" prefWidth="41.0" promptText="dd" />
+      <Text layoutX="29.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Od:" />
+      <TextField fx:id="monthBirthdayTextField" editable="false" layoutX="76.0" layoutY="128.0" prefHeight="25.0" prefWidth="41.0" promptText="mm" />
+      <TextField fx:id="yearBirthdayTextField" editable="false" layoutX="120.0" layoutY="128.0" prefHeight="25.0" prefWidth="59.0" promptText="yyyy" />
+      <TextField fx:id="dayBirthdayTextField1" editable="false" layoutX="29.0" layoutY="182.0" prefHeight="25.0" prefWidth="41.0" promptText="dd" />
+      <Text layoutX="29.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do:" />
+      <TextField fx:id="monthBirthdayTextField1" editable="false" layoutX="76.0" layoutY="182.0" prefHeight="25.0" prefWidth="41.0" promptText="mm" />
+      <TextField fx:id="yearBirthdayTextField1" editable="false" layoutX="120.0" layoutY="182.0" prefHeight="25.0" prefWidth="59.0" promptText="yyyy" />
+      <Label layoutX="32.0" layoutY="14.0" text="Stanowisko" />
+      <Label layoutX="30.0" layoutY="57.0" text="Dział" />
+      <Button fx:id="addEmployeeButton" layoutX="272.0" layoutY="182.0" mnemonicParsing="false" onAction="#addEmployee" text="Dodaj" />
+      <Button fx:id="cancelButton" layoutX="205.0" layoutY="182.0" mnemonicParsing="false" onAction="#cancel" text="Anuluj" />
+   </children>
+</Pane>

@@ -21,7 +21,7 @@
                       <MenuItem fx:id="rateEmployeeMenu" mnemonicParsing="false" text="Rate employee" />
                       <MenuItem fx:id="generateDocumentMenu" mnemonicParsing="false" text="Generuj dokument..." />
                       <MenuItem fx:id="qualificationMenu" mnemonicParsing="false" text="Kwalifikacje pracownika" />
-                      <MenuItem fx:id="viewMoreMenu" mnemonicParsing="false" text="View more..." />
+                      <MenuItem fx:id="viewMoreMenu" mnemonicParsing="false" text="View more..." onAction="#viewEmployeeInfo" />
                   </items>
               </ContextMenu>
           </contextMenu>

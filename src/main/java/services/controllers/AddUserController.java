@@ -59,6 +59,15 @@ public class AddUserController implements Initializable {
     private RadioButton userRadioButton;
 
     @FXML
+    private TextField nameTextField;
+
+    @FXML
+    private TextField surnameTextField;
+
+    @FXML
+    private TextField peselTextField;
+
+    @FXML
     public boolean isUsernameAvailable(){
 
         if(usernameLabel.getText().equals("")) {
@@ -87,7 +96,7 @@ public class AddUserController implements Initializable {
         if(isUsernameAvailable())
                 if (checkPasswd())
                     if (isEmailValid()) {
-                        DBConnector.getDatastore().save(new User(usernameLabel.getText(), passwdLabel.getText(), emailLabel.getText(), selectedRole(), LoginService.loggedUser.getUsername()));
+                        DBConnector.getDatastore().save(new User(usernameLabel.getText(), passwdLabel.getText(), emailLabel.getText(), nameTextField.getText(), surnameTextField.getText(), peselTextField.getText(), selectedRole(), LoginService.loggedUser.getUsername()));
                         System.out.println(selectedRole());
                         emailErrorLabel.setText("zarejestrowano pomyslnie");
                         emailErrorLabel.setVisible(true);

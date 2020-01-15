@@ -137,6 +137,7 @@ public class AddEmployeeController implements Initializable {
         String birthDate = yearBirthdayTextField.getText()+"-"+monthBirthdayTextField.getText()+"-"+dayBirthdayTextField.getText();
         String employedSince = yearEmployedTextField.getText()+"-"+monthEmployedTextField.getText()+"-"+dayEmployedTextField.getText();
 
+
         if(!Validators.validateDate(birthDate)) {
             messageLabel.setText("Err: data urodzenia");
            messageLabel.setVisible(true);
@@ -159,11 +160,7 @@ public class AddEmployeeController implements Initializable {
             messageLabel.setVisible(true);
             return;
         }
-        if(!Validators.validateCity(city)){
-            messageLabel.setText("Err: miasto");
-            messageLabel.setVisible(true);
-            return;
-        }
+
         if(!Validators.validatePhone(phoneNumber)){
             messageLabel.setText("Err: numer telefonu");
             messageLabel.setVisible(true);
@@ -187,6 +184,7 @@ public class AddEmployeeController implements Initializable {
                 new JobPosition(employedSince,"",jobPosition,department),salary+currencyComboBox.getValue(),contractType,
                 new Address(country,city,street,houseNumber,zipCode), LoginService.loggedUser.getUsername()
                 );
+
 
         DBConnector.getDatastore().save(employee);
 

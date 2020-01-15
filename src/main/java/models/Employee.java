@@ -27,6 +27,7 @@ public class Employee implements DatabaseObject {
     private String contractType;
     private String salary;
     private String addedBy;
+    private String phoneNumber;
     @Embedded
     private JobPosition jobPosition;
     @Embedded
@@ -70,13 +71,70 @@ public class Employee implements DatabaseObject {
         this.salary=salary;
     }
 
+
+    public Employee(String name, String surname, String birthDate, String personalIdentityNumber,String idCardNumber, String employedSince, JobPosition jobPosition,String salary,String phoneNumber,String contractType, Address address,String addedBy) {
+        this.name = name;
+        this.surname = surname;
+        this.birthDate = birthDate;
+        this.personalIdentityNumber = personalIdentityNumber;
+        this.employedSince = employedSince;
+        this.jobPosition = jobPosition;
+        this.address = address;
+        this.idCardNumber=idCardNumber;
+        this.contractType=contractType;
+        this.addedBy=addedBy;
+        this.salary=salary;
+        this.phoneNumber=phoneNumber;
+    }
     //<editor-fold desc="Getters and setters">
     public ObjectId getId() {
         return id;
     }
 
+
+
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public String getIdCardNumber() {
+        return idCardNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setIdCardNumber(String idCardNumber) {
+        this.idCardNumber = idCardNumber;
+    }
+
+    public String getContractType() {
+        return contractType;
+    }
+
+    public void setContractType(String contractType) {
+        this.contractType = contractType;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    public String getAddedBy() {
+        return addedBy;
+    }
+
+    public void setAddedBy(String addedBy) {
+        this.addedBy = addedBy;
     }
 
     public String getPersonalIdentityNumber() {

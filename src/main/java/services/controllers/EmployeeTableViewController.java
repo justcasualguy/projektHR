@@ -2,25 +2,34 @@ package services.controllers;
 
 
 import com.mongodb.WriteResult;
+import gui.MainStage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import models.Employee;
 import services.dbconnector.DBConnector;
 import services.generators.ErrorGenerator;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EmployeeTableViewController implements Initializable {
 
+    public static Employee selectedEmployee;
+    private Stage viewEmployeeInfoStage;
 
     @FXML
     private Label label;
@@ -190,6 +199,31 @@ public class EmployeeTableViewController implements Initializable {
         }
 
     }
+
+    public void viewEmployeeInfo(ActionEvent actionEvent){
+        selectedEmployee = findEmployeeTableView.getSelectionModel().getSelectedItem();
+        if(selectedEmployee == null)
+        {
+            ErrorGenerator.errorMessage("No employee selected! Please select employee.");
+            return;
+        }
+
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/viewEmployeeInfoScene.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        viewEmployeeInfoStage = new Stage();
+        viewEmployeeInfoStage.initModality(Modality.WINDOW_MODAL);
+        viewEmployeeInfoStage.initOwner(MainStage.mainStage.getScene().getWindow());
+        viewEmployeeInfoStage.setScene(new Scene(root));
+        viewEmployeeInfoStage.show();
+        //MainStage.mainStage.setScene(new Scene(root));
+
+
+    }
+
 
 
 
