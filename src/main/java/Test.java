@@ -42,7 +42,7 @@ public class Test {
         Employee employee = new Employee("Jan", "Kowalski", "nieistotne", "12-12-2018"
                 , new JobPosition("12-12-2018", "12-12-2018", "sprzątacz", "czystości"),
                 new Address("Polska", "Warszawa", "Przeworska", "3", "21-530"),
-                null, null, null);
+                null, null);
         String templatePath = "C:\\Users\\kubac\\Desktop\\Generowanie dokumentow\\test.docx";
         String documentName = "test2.docx";
 

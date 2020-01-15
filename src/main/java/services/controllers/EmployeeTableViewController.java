@@ -228,6 +228,41 @@ public class EmployeeTableViewController implements Initializable {
     }
 
 
+    public void viewQualificationMenu(ActionEvent actionEvent)
+    {
+        selectedEmployee = findEmployeeTableView.getSelectionModel().getSelectedItem();
+        if(selectedEmployee == null)
+        {
+            ErrorGenerator.errorMessage("No employee selected! Please select employee.");
+            return;
+        }
+        /*Parent root = null;
+        try
+        {
+            root = FXMLLoader.load(getClass().getResource("/employeeQualificationMenu.fxml"));
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }*/
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/employeeQualificationMenu.fxml"));
+        try
+        {
+            loader.load();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        employeeQualificationMenuController e = loader.getController();
+        e.sendEmployee(selectedEmployee);
 
+        Parent root = loader.getRoot();
 
+        viewEmployeeInfoStage = new Stage();
+        viewEmployeeInfoStage.initModality(Modality.WINDOW_MODAL);
+        viewEmployeeInfoStage.initOwner(MainStage.mainStage.getScene().getWindow());
+        viewEmployeeInfoStage.setScene(new Scene(root));
+        viewEmployeeInfoStage.show();
+
+    }
 }
