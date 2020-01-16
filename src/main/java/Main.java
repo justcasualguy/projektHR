@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.Employee;
 import services.dbconnector.DBConnector;
 
 public class Main extends Application {
@@ -11,25 +12,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-//        String databaseUri = "mongodb+srv://user:user@cluster0-xxoxs.azure.mongodb.net/test?retryWrites=true&w=majority&maxIdleTimeMS=5000&ssl=true";
-//        String dbName = "Projekt";
-//        MongoDatabase database = DBConnector.getDatabase(databaseUri,dbName);
-//        MongoCollection<Document> collection = database.getCollection("Employees");
-//
-//
-//        collection.insertOne(EmployeeGenerator.generateManEmployee().toDocument());
-//
-//
-//        MongoCursor<Document> cur = collection.find().iterator();
-//        while(cur.hasNext()){
-//           // Document doc = cur.next();
-//            System.out.println(cur.next());
-//        }
-
-
-
-//        MongoCollection<Document> collection = mongoDatabase.getCollection("test");
-//        collection.insertOne(doc);
         launch(args);
 
     }
@@ -38,8 +20,10 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         DBConnector.connect("Projekt");
+//        DBConnector.addCollection("Users");
+      //  DBConnector.getDatastore().save(new User("admin","admin","email","admin"));
         Parent root = FXMLLoader.load(getClass().getResource("loginScene.fxml"));
-
+        //System.out.println(DBConnector.getCollectionAsList(Employee.class).toString());
 
         Scene scene = new Scene(root);
         mainStage= MainStage.mainStage;

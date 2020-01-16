@@ -9,17 +9,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.MainSceneController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.MainSceneUserController">
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="whoIsLoggedIn" alignment="BOTTOM_LEFT" contentDisplay="CENTER" text="aaaa">
+            <Label fx:id="whoIsLoggedIn" alignment="BOTTOM_LEFT" contentDisplay="CENTER" text="aa">
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin>
             </Label>
             <Region style="-fx-border-color: grey;" HBox.hgrow="ALWAYS" />
-            <Button fx:id="logOut" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Wyloguj" />
+            <Button fx:id="logOutButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Wyloguj" onAction="#logout"/>
          </children>
          <effect>
             <Reflection />
@@ -29,27 +29,22 @@
    <left>
       <VBox prefHeight="560.0" prefWidth="111.0" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="addUser" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Dodaj &#10;użytkownika" textAlignment="CENTER" onAction="#addUser">
+            <Button fx:id="addEmployeeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Dodaj &#10;pracownika" textAlignment="CENTER" onAction="#addEmployee">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="removeUser" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Usuń&#10;użytkownika" textAlignment="CENTER">
+            <Button fx:id="removeUserButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Usuń&#10;użytkownika" textAlignment="CENTER">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="editUser" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Edytuj&#10;użytkownika" textAlignment="CENTER">
+            <Button fx:id="editUserButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Edytuj&#10;użytkownika" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="seekEmploye" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Wyszukaj&#10;pracownika&#10;" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Button">
+            <Button fx:id="seekEmployeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Wyszukaj&#10;pracownika&#10;" textAlignment="CENTER" onAction="#seekEmployee">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
@@ -64,7 +59,12 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="generateSomething" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Generuj coś">
+            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Button">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="generateSomethingButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Generuj coś">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>

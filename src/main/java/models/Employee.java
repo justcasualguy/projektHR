@@ -1,25 +1,44 @@
 package models;
+
 import interfaces.DatabaseObject;
 import org.bson.Document;
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
 
-import java.time.LocalDate;
 import java.util.LinkedList;
 
-
+@Entity(value = "Employees",noClassnameStored = true)
 public class Employee implements DatabaseObject {
+
+    @Id
+    public ObjectId id;
+
     private String name;
     private String surname;
-    private String gender;
-    private LocalDate birthDate;
+    //private String gender;
+    @Property("birth date")
+    private String birthDate;
     private String personalIdentityNumber;
-    private LocalDate employedSince;
+    private String idCardNumber;
+    private String employedSince;
+    private String contractType;
+    private String salary;
+    private String addedBy;
+    @Embedded
     private JobPosition jobPosition;
+    @Embedded
     private Address address;
     private LinkedList<JobPosition> careerPath;                                     //nie dodane do toDocument
     private LinkedList<Rating> ratings;                 //nie dodane do toDocument
     private LinkedList<Qualification> qualifications;                   //nie dodane do toDocument
 
-    public Employee(String name, String surname,  LocalDate birthDate, LocalDate employedSince, JobPosition jobPosition, Address address, LinkedList<JobPosition> careerPath, LinkedList<Rating> ratings, LinkedList<Qualification> qualifications) {
+    public Employee() {
+    }
+
+    public Employee(String name, String surname, String birthDate, String employedSince, JobPosition jobPosition, Address address, LinkedList<JobPosition> careerPath, LinkedList<Rating> ratings, LinkedList<Qualification> qualifications) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
@@ -31,13 +50,43 @@ public class Employee implements DatabaseObject {
         this.qualifications = qualifications;
     }
 
-    public Employee(String name, String surname, LocalDate birthDate) {
+    public Employee(String name, String surname, String birthDate) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
     }
 
+    public Employee(String name, String surname, String birthDate, String personalIdentityNumber,String idCardNumber, String employedSince, JobPosition jobPosition,String salary,String contractType, Address address,String addedBy) {
+        this.name = name;
+        this.surname = surname;
+        this.birthDate = birthDate;
+        this.personalIdentityNumber = personalIdentityNumber;
+        this.employedSince = employedSince;
+        this.jobPosition = jobPosition;
+        this.address = address;
+        this.idCardNumber=idCardNumber;
+        this.contractType=contractType;
+        this.addedBy=addedBy;
+        this.salary=salary;
+    }
+
     //<editor-fold desc="Getters and setters">
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    public String getPersonalIdentityNumber() {
+        return personalIdentityNumber;
+    }
+
+    public void setPersonalIdentityNumber(String personalIdentityNumber) {
+        this.personalIdentityNumber = personalIdentityNumber;
+    }
+
     public String getName() {
         return name;
     }
@@ -56,19 +105,19 @@ public class Employee implements DatabaseObject {
 
 
 
-    public LocalDate getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
-    public LocalDate getEmployedSince() {
+    public String getEmployedSince() {
         return employedSince;
     }
 
-    public void setEmployedSince(LocalDate employedSince) {
+    public void setEmployedSince(String employedSince) {
         this.employedSince = employedSince;
     }
 
@@ -117,7 +166,7 @@ public class Employee implements DatabaseObject {
     public Document toDocument() {
         return new Document("name",name)
                 .append("surname",surname)
-                .append("birth date",birthDate.toString());
+                .append("birth date", birthDate);
                 //.append("employed since",employedSince.toString())
               //  .append("job position: ",jobPosition.toDocument());
                 //.append("address",address.toDocument());

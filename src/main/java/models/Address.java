@@ -2,22 +2,24 @@ package models;
 
 import interfaces.DatabaseObject;
 import org.bson.Document;
+import org.mongodb.morphia.annotations.Embedded;
 
-
+@Embedded
 public class Address implements DatabaseObject {
     private String country;
     private String city;
     private String street;
     private String houseNumber;
-    private String houseUnitNumber;
     private String zipcode;
 
-    public Address(String country, String city, String street, String houseNumber, String houseUnitNumber, String zipcode) {
+    public Address() {
+    }
+
+    public Address(String country, String city, String street, String houseNumber, String zipcode) {
         this.country = country;
         this.city = city;
         this.street = street;
         this.houseNumber = houseNumber;
-        this.houseUnitNumber = houseUnitNumber;
         this.zipcode = zipcode;
     }
 
@@ -46,14 +48,6 @@ public class Address implements DatabaseObject {
         this.houseNumber = houseNumber;
     }
 
-    public String getHouseUnitNumber() {
-        return houseUnitNumber;
-    }
-
-    public void setHouseUnitNumber(String houseUnitNumber) {
-        this.houseUnitNumber = houseUnitNumber;
-    }
-
     public String getCity() {
         return city;
     }
@@ -76,7 +70,6 @@ public class Address implements DatabaseObject {
        return new Document("country",country)
                .append("street",street)
                .append("houseNumber",houseNumber)
-               .append("houseUnitNumber",houseUnitNumber)
                .append("city",city)
                .append("zipcode",zipcode);
 
