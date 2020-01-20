@@ -17,11 +17,12 @@ public class T extends Application {
 
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("addEmployeeScene.fxml"));
+            root = FXMLLoader.load(getClass().getResource("assessmentTest.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
 
     }

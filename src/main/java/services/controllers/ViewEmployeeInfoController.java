@@ -1,12 +1,15 @@
 package services.controllers;
 
 
+import gui.MainStage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -21,7 +24,9 @@ import models.JobPosition;
 import services.LoginService;
 import services.Validators;
 import services.dbconnector.DBConnector;
+import services.generators.ErrorGenerator;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -107,6 +112,9 @@ public class ViewEmployeeInfoController implements Initializable {
 
     @FXML
     private Button confirmButton;
+
+    @FXML
+    private Button salariesButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -206,14 +214,14 @@ public class ViewEmployeeInfoController implements Initializable {
 
         yearBirthdayTextField.setEditable(!yearBirthdayTextField.isEditable());
         monthBirthdayTextField.setEditable(!monthBirthdayTextField.isEditable());
-        dayEmployedTextField.setEditable(!monthEmployedTextField.isEditable());
+        dayBirthdayTextField.setEditable(!dayBirthdayTextField.isEditable());
     }
 
     public ArrayList<String> checkEdited(){
         ArrayList<String> edited = new ArrayList<String>();
         String birthDate = yearBirthdayTextField.getText()+"-"+monthBirthdayTextField.getText()+"-"+dayBirthdayTextField.getText();
         String employedSince = yearEmployedTextField.getText()+"-"+monthEmployedTextField.getText()+"-"+dayEmployedTextField.getText();
-        String selectedContractType = contractTypeComboBox.getValue();
+
 
         if(!nameTextField.getText().equals(EmployeeTableViewController.selectedEmployee.getName()))
             edited.add("Imię");
@@ -245,7 +253,7 @@ public class ViewEmployeeInfoController implements Initializable {
             edited.add("Data urodzenia");
         if(!employedSince.equals(EmployeeTableViewController.selectedEmployee.getEmployedSince()))
             edited.add("Data urodzenia");
-        if(!selectedContractType.equals(contractTypeComboBox.getValue()))
+        if(!contractTypeComboBox.getValue().equals(EmployeeTableViewController.selectedEmployee.getContractType()))
             edited.add("Typ kontraktu");
 
 
@@ -330,44 +338,60 @@ public class ViewEmployeeInfoController implements Initializable {
 
 
         if(!Validators.validateDate(birthDate)) {
-            messageLabel.setText("Err: data urodzenia");
+            ErrorGenerator.errorMessage("Niepoprawna data urodzenia.");
+            //messageLabel.setText("Err: data urodzenia");
             messageLabel.setVisible(true);
             return false;
         }
 
         if(!Validators.validateDate(employedSince)) {
-            messageLabel.setText("Err: data zatrudnienia");
+            ErrorGenerator.errorMessage("Niepoprawna data zatrudnienia.");
+            //messageLabel.setText("Err: data zatrudnienia");
+            messageLabel.setVisible(true);
+            return false;
+        }
+
+        if(!Validators.validateDate(birthDate)) {
+            ErrorGenerator.errorMessage("Niepoprawna data urodzenia.");
+            //messageLabel.setText("Err: data zatrudnienia");
             messageLabel.setVisible(true);
             return false;
         }
 
         if(!Validators.validateName(name)){
-            messageLabel.setText("Err: imie");
+            ErrorGenerator.errorMessage("Niepoprawne imie.");
+            //messageLabel.setText("Err: imie");
             messageLabel.setVisible(true);
             return false;
         }
         if(!Validators.validateSurname(surname)){
-            messageLabel.setText("Err: nazwisko");
+            ErrorGenerator.errorMessage("Niepoprawne naziwsko.");
+            //messageLabel.setText("Err: nazwisko");
             messageLabel.setVisible(true);
             return false;
         }
 
         if(!Validators.validatePhone(phoneNumber)){
-            messageLabel.setText("Err: numer telefonu");
+            ErrorGenerator.errorMessage("Niepoprawny numer telefonu.");
+            //messageLabel.setText("Err: numer telefonu");
             messageLabel.setVisible(true);
             return false;
         }
 
         if(!Validators.validateSalary(salary)){
-            messageLabel.setText("Err: wynagrodzenie");
+            ErrorGenerator.errorMessage("Niepoprawne wynagrodzenie.");
+            //messageLabel.setText("Err: wynagrodzenie");
             messageLabel.setVisible(true);
             return false;
         }
         if(!Validators.validateContractType(contractType)){
-            messageLabel.setText("Err: typ kontraktu");
+            ErrorGenerator.errorMessage("Wybierz typ kontraktu.");
+            //messageLabel.setText("Err: typ kontraktu");
             messageLabel.setVisible(true);
             return false;
         }
+
+
         return true;
     }
 
@@ -406,7 +430,20 @@ public class ViewEmployeeInfoController implements Initializable {
         DBConnector.getDatastore().save(employee);
     }
 
-
+    @FXML
+    public void salaries(){
+        Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/employeeSalariesMenu.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(MainStage.mainStage.getScene().getWindow());
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
 
     @FXML

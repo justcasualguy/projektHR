@@ -34,14 +34,16 @@ public class Employee implements DatabaseObject {
     @Embedded
     private Address address;
 
+    private LinkedList<Salary> salaries = new LinkedList<>();
     private LinkedList<JobPosition> careerPath;                                     //nie dodane do toDocument
-    private LinkedList<Rating> ratings;                 //nie dodane do toDocument
+
+    private LinkedList<Assessment> assessments = new LinkedList<>();                 //nie dodane do toDocument
     private List<String> qualifications;                   //nie dodane do toDocument
 
     public Employee() {
     }
 
-    public Employee(String name, String surname, String birthDate, String employedSince, JobPosition jobPosition, Address address, LinkedList<JobPosition> careerPath, LinkedList<Rating> ratings) {
+    public Employee(String name, String surname, String birthDate, String employedSince, JobPosition jobPosition, Address address, LinkedList<JobPosition> careerPath, LinkedList<Assessment> assessments) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
@@ -49,7 +51,7 @@ public class Employee implements DatabaseObject {
         this.jobPosition = jobPosition;
         this.address = address;
         this.careerPath = careerPath;
-        this.ratings = ratings;
+        this.assessments = assessments;
     }
 
     public Employee(String name, String surname, String birthDate) {
@@ -92,7 +94,21 @@ public class Employee implements DatabaseObject {
         return id;
     }
 
+    public LinkedList<Salary> getSalaries() {
+        return salaries;
+    }
 
+    public void setSalaries(LinkedList<Salary> salaries) {
+        this.salaries = salaries;
+    }
+
+    public List<String> getQualifications() {
+        return qualifications;
+    }
+
+    public void setQualifications(List<String> qualifications) {
+        this.qualifications = qualifications;
+    }
 
     public void setId(ObjectId id) {
         this.id = id;
@@ -204,12 +220,12 @@ public class Employee implements DatabaseObject {
         this.careerPath = careerPath;
     }
 
-    public LinkedList<Rating> getRatings() {
-        return ratings;
+    public LinkedList<Assessment> getAssessments() {
+        return assessments;
     }
 
-    public void setRatings(LinkedList<Rating> ratings) {
-        this.ratings = ratings;
+    public void setAssessments(LinkedList<Assessment> assessments) {
+        this.assessments = assessments;
     }
 
     //</editor-fold>

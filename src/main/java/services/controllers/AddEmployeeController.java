@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Address;
+import models.Assessment;
 import models.Employee;
 import models.JobPosition;
 import services.LoginService;
@@ -186,6 +187,7 @@ public class AddEmployeeController implements Initializable {
                 new Address(country,city,street,houseNumber,zipCode), LoginService.loggedUser.getUsername()
                 );
 
+        employee.getAssessments().add(new Assessment("now","wow","go"));
 
         DBConnector.getDatastore().save(employee);
 

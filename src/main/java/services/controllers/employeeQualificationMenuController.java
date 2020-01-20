@@ -32,6 +32,7 @@ public class employeeQualificationMenuController implements Initializable
          TreeItem<String> itemChild3 = new TreeItem<>(e.getSalary());
          root.getChildren().addAll(itemChild, itemChild2, itemChild3);
          qualificationTreeView.setRoot(root);
+
      }
 
 

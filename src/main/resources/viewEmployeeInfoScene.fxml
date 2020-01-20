@@ -3,9 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.ViewEmployeeInfoController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.AddEmployeeController">
    <children>
-      <Button fx:id="cancelButton" layoutX="278.0" layoutY="624.0" mnemonicParsing="false" onAction="#cancel" text="Zamknij" />
+      <Button fx:id="addEmployeeButton" layoutX="310.0" layoutY="624.0" mnemonicParsing="false" onAction="#addEmployee" text="Dodaj" />
+      <Button fx:id="cancelButton" layoutX="243.0" layoutY="624.0" mnemonicParsing="false" onAction="#cancel" text="Anuluj" />
       <Label layoutX="226.0" layoutY="14.0" prefHeight="25.0" prefWidth="148.0" text="Infromacje o pracowniku" />
       <TextField fx:id="nameTextField" editable="false" layoutX="14.0" layoutY="59.0" text="Jakub" />
       <TextField fx:id="surnameTextField" editable="false" layoutX="14.0" layoutY="112.0" text="Jakub" />
@@ -23,13 +24,13 @@
       <Text layoutX="266.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pracuje od:" />
       <TextField fx:id="monthEmployedTextField" editable="false" layoutX="313.0" layoutY="61.0" prefHeight="25.0" prefWidth="41.0" promptText="mm" text="10" />
       <TextField fx:id="yearEmployedTextField" editable="false" layoutX="357.0" layoutY="61.0" prefHeight="25.0" prefWidth="59.0" promptText="yyyy" text="2000" />
-      <Text layoutX="430.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
-      <Text layoutX="474.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
-      <TextField fx:id="jobPositionTextField" editable="false" layoutX="266.0" layoutY="157.0" text="sssss" />
+      <Text layoutX="309.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+      <Text layoutX="353.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+      <TextField fx:id="jobPositionTextField" layoutX="266.0" layoutY="157.0" text="sssss" />
       <Text layoutX="266.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stanowisko:" />
       <TextField fx:id="salaryTextField" editable="false" layoutX="266.0" layoutY="212.0" prefHeight="25.0" prefWidth="115.0" text="2000,00" />
       <Text layoutX="266.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wynagrodzenie:" />
-      <ComboBox fx:id="contractTypeComboBox" disable="true" layoutX="265.0" layoutY="305.0" prefWidth="150.0" promptText="Typ umowy" />
+      <ComboBox fx:id="contractTypeComboBox" layoutX="265.0" layoutY="305.0" prefWidth="150.0" promptText="Typ umowy" />
       <TextField fx:id="departmentTextField" editable="false" layoutX="266.0" layoutY="108.0" text="dzial" />
       <Text layoutX="266.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dział:" />
       <TextField fx:id="personalIdentityNumberTextField" editable="false" layoutX="14.0" layoutY="213.0" text="123456789" />
@@ -38,6 +39,7 @@
       <Text layoutX="14.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numer dowodu osobistego:" />
       <TextField fx:id="phoneNumberTextField" editable="false" layoutX="266.0" layoutY="265.0" text="123456789" />
       <Text layoutX="266.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numer telefonu:" />
+      <Label fx:id="messageLabel" layoutX="34.0" layoutY="304.0" text="Error" visible="false" />
       <TextField fx:id="houseNumberTextField" editable="false" layoutX="14.0" layoutY="365.0" text="33" />
       <Text layoutX="14.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nr mieszkania, lokalu:" />
       <TextField fx:id="cityTextField" editable="false" layoutX="14.0" layoutY="419.0" text="mmmm" />
@@ -46,13 +48,9 @@
       <Text layoutX="14.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kraj:" />
       <TextField fx:id="zipCodeTextField" editable="false" layoutX="14.0" layoutY="521.0" text="21-333" />
       <Text layoutX="14.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kod pocztowy:" />
-      <ComboBox fx:id="currencyComboBox" disable="true" layoutX="387.0" layoutY="212.0" prefHeight="25.0" prefWidth="63.0" promptText="zł" />
-      <Button layoutX="264.0" layoutY="454.0" mnemonicParsing="false" text="Ścieżka awansu" />
-      <Button layoutX="401.0" layoutY="454.0" mnemonicParsing="false" text="Paski wypłaty" />
-      <Button layoutX="276.0" layoutY="509.0" mnemonicParsing="false" text="Kwalifikacje pracownika" />
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" />
-      <Button fx:id="editModeButton" layoutX="19.0" layoutY="565.0" mnemonicParsing="false" onAction="#switchEditMode" text="Tryb Edycji" />
-      <Button fx:id="confirmButton" disable="true" layoutX="433.0" layoutY="624.0" mnemonicParsing="false" onAction="#confirmChanges" text="Potwierdź zmiany" visible="false" />
-      <Label fx:id="messageLabel" layoutX="20.0" layoutY="628.0" />
+      <ComboBox fx:id="currencyComboBox" layoutX="387.0" layoutY="212.0" prefHeight="25.0" prefWidth="63.0" promptText="zł" />
+      <Button layoutX="260.0" layoutY="407.0" mnemonicParsing="false" text="Ścieżka awansu" />
+      <Button fx:id="salariesButton" layoutX="257.0" layoutY="354.0" mnemonicParsing="false" onAction="#salaries" text="Wypłaty" />
+      <Button layoutX="252.0" layoutY="465.0" mnemonicParsing="false" text="Kwalifikacje pracownika" />
    </children>
 </Pane>
