@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import models.Address;
 import models.Employee;
 import models.JobPosition;
+import models.Salary;
 import services.LoginService;
 import services.Validators;
 import services.dbconnector.DBConnector;
@@ -183,9 +184,9 @@ public class AddEmployeeController implements Initializable {
         messageLabel.setText("Dodano");
         messageLabel.setVisible(true);
         Employee employee =  new Employee(name,surname,birthDate,personalIdentityNumber,idCardNumber,employedSince,
-                new JobPosition(employedSince,"",jobPosition,department),salary+currencyComboBox.getValue(),contractType,
-                new Address(country,city,street,houseNumber,zipCode), qual , LoginService.loggedUser.getUsername()
-                );
+                new JobPosition(employedSince,"",jobPosition,department),salary+" "+currencyComboBox.getValue(),contractType,
+                new Address(country,city,street,houseNumber,zipCode), qual ,new ArrayList<Salary>(), LoginService.loggedUser.getUsername()
+                ,phoneNumber);
 
 
         DBConnector.getDatastore().save(employee);

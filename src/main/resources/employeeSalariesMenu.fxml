@@ -6,8 +6,8 @@
 <?import javafx.scene.layout.Pane?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="448.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.EmployeeSalariesMenuController">
    <children>
-      <ListView fx:id="salariesTreeView" prefHeight="317.0" prefWidth="287.0" />
-      <Button fx:id="addButton" layoutX="336.0" layoutY="231.0" mnemonicParsing="false" text="Dodaj" />
-      <Button fx:id="exitButton" layoutX="336.0" layoutY="270.0" mnemonicParsing="false" text="Wyjdź" />
+      <ListView fx:id="salariesListView" prefHeight="317.0" prefWidth="287.0" />
+      <Button fx:id="addButton" layoutX="336.0" layoutY="231.0" mnemonicParsing="false" text="Dodaj" onAction="#addSalary"/>
+      <Button fx:id="exitButton" layoutX="336.0" layoutY="270.0" mnemonicParsing="false" text="Wyjdź" onAction="#exit" />
    </children>
 </Pane>

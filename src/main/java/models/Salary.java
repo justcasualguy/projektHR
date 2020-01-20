@@ -5,6 +5,9 @@ public class Salary {
    private  String endPeriodDate;
    private  String salary;
 
+    public Salary() {
+    }
+
     public Salary(String salary, String beginPeriodDate, String endPeriodDate) {
         this.beginPeriodDate = beginPeriodDate;
         this.endPeriodDate = endPeriodDate;
@@ -14,10 +17,6 @@ public class Salary {
 
     @Override
     public String toString() {
-        return "Salary{" +
-                "beginPeriodDate='" + beginPeriodDate + '\'' +
-                ", endPeriodDate='" + endPeriodDate + '\'' +
-                ", salary='" + salary + '\'' +
-                '}';
+        return salary +"\n za okres od "+beginPeriodDate+" do "+endPeriodDate;
     }
 }

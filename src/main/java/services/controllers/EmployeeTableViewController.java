@@ -2,7 +2,6 @@ package services.controllers;
 
 
 import com.mongodb.WriteResult;
-import gui.MainStage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -54,40 +53,6 @@ public class EmployeeTableViewController implements Initializable {
 
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
-        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
-
-        final ObservableList<Employee> dataList = FXCollections.observableArrayList();
-
-        dataList.addAll(DBConnector.getCollectionAsList(Employee.class));
-
-        FilteredList<Employee> filteredData = new FilteredList<>(dataList, b -> true);
-
-        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(employee -> {
-                if(newValue == null || newValue.isEmpty()){
-                    return true;
-                }
-
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if(employee.getName().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                    return true;
-                } else return employee.getSurname().toLowerCase().indexOf(lowerCaseFilter) != -1;
-            });
-
-        });
-
-        SortedList<Employee> sortedData = new SortedList<>(filteredData);
-
-        sortedData.comparatorProperty().bind(findEmployeeTableView.comparatorProperty());
-
-        findEmployeeTableView.setItems(sortedData);
-    }
 
     public Label getLabel()
     {
@@ -150,6 +115,40 @@ public class EmployeeTableViewController implements Initializable {
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+
+        final ObservableList<Employee> dataList = FXCollections.observableArrayList();
+
+        dataList.addAll(DBConnector.getCollectionAsList(Employee.class));
+
+        FilteredList<Employee> filteredData = new FilteredList<>(dataList, b -> true);
+
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(employee -> {
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(employee.getName().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                    return true;
+                } else return employee.getSurname().toLowerCase().indexOf(lowerCaseFilter) != -1;
+            });
+
+        });
+
+        SortedList<Employee> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(findEmployeeTableView.comparatorProperty());
+
+        findEmployeeTableView.setItems(sortedData);
+    }
 
     public void refreshTableView()
     {
@@ -220,8 +219,9 @@ public class EmployeeTableViewController implements Initializable {
         }
         viewEmployeeInfoStage = new Stage();
         viewEmployeeInfoStage.initModality(Modality.WINDOW_MODAL);
-        viewEmployeeInfoStage.initOwner(MainStage.mainStage.getScene().getWindow());
+        viewEmployeeInfoStage.initOwner(refreshButton.getScene().getWindow());
         viewEmployeeInfoStage.setScene(new Scene(root));
+        viewEmployeeInfoStage.setOnHiding( event -> refreshTableView() );
         viewEmployeeInfoStage.show();
         //MainStage.mainStage.setScene(new Scene(root));
 
@@ -261,7 +261,8 @@ public class EmployeeTableViewController implements Initializable {
 
         viewEmployeeInfoStage = new Stage();
         viewEmployeeInfoStage.initModality(Modality.WINDOW_MODAL);
-        viewEmployeeInfoStage.initOwner(MainStage.mainStage.getScene().getWindow());
+        viewEmployeeInfoStage.initOwner(refreshButton.getScene().getWindow());
+
         viewEmployeeInfoStage.setScene(new Scene(root));
         viewEmployeeInfoStage.show();
 

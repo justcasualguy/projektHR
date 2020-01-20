@@ -34,8 +34,9 @@ public class Employee implements DatabaseObject {
     private JobPosition jobPosition;
     @Embedded
     private Address address;
+    @Embedded
+    private List<Salary> salaries = new ArrayList<>();
 
-    private LinkedList<Salary> salaries = new LinkedList<>();
     private LinkedList<JobPosition> careerPath;                                     //nie dodane do toDocument
 
     private LinkedList<Assessment> assessments = new LinkedList<>();                 //nie dodane do toDocument
@@ -62,7 +63,7 @@ public class Employee implements DatabaseObject {
         this.birthDate = birthDate;
     }
 
-    public Employee(String name, String surname, String birthDate, String personalIdentityNumber,String idCardNumber, String employedSince, JobPosition jobPosition,String salary,String contractType, Address address,List<String> qual, String addedBy) {
+    public Employee(String name, String surname, String birthDate, String personalIdentityNumber,String idCardNumber, String employedSince, JobPosition jobPosition,String salary,String contractType, Address address,List<String> qual,List<Salary> salaries, String addedBy, String phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
@@ -75,6 +76,8 @@ public class Employee implements DatabaseObject {
         this.addedBy=addedBy;
         this.salary=salary;
         this.qualifications = qual;
+        this.salaries=salaries;
+        this.phoneNumber=phoneNumber;
     }
 
 
@@ -98,13 +101,14 @@ public class Employee implements DatabaseObject {
     }
 
 
-    public LinkedList<Salary> getSalaries() {
+    public List<Salary> getSalaries() {
         return salaries;
     }
 
-    public void setSalaries(LinkedList<Salary> salaries) {
+    public void setSalaries(List<Salary> salaries) {
         this.salaries = salaries;
     }
+
 
     public void setQualifications(List<String> qualifications) {
         this.qualifications = qualifications;

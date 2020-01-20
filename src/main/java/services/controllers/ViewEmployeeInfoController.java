@@ -1,7 +1,6 @@
 package services.controllers;
 
 
-import gui.MainStage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +20,7 @@ import javafx.stage.Stage;
 import models.Address;
 import models.Employee;
 import models.JobPosition;
+import models.Salary;
 import services.LoginService;
 import services.Validators;
 import services.dbconnector.DBConnector;
@@ -29,6 +29,7 @@ import services.generators.ErrorGenerator;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ViewEmployeeInfoController implements Initializable {
@@ -188,10 +189,10 @@ public class ViewEmployeeInfoController implements Initializable {
 
 
     @FXML
-    public void switchEditMode(ActionEvent event){
+    public void switchEditMode(){
 
         confirmButton.setVisible(!confirmButton.isVisible());
-        confirmButton.setDisable(!confirmButton.isDisabled());
+
 
         nameTextField.setEditable(!nameTextField.isEditable());
         surnameTextField.setEditable(!surnameTextField.isEditable());
@@ -416,15 +417,16 @@ public class ViewEmployeeInfoController implements Initializable {
         String contractType = contractTypeComboBox.getValue();
         String birthDate = yearBirthdayTextField.getText()+"-"+monthBirthdayTextField.getText()+"-"+dayBirthdayTextField.getText();
         String employedSince = yearEmployedTextField.getText()+"-"+monthEmployedTextField.getText()+"-"+dayEmployedTextField.getText();
+        List<String> qual = new ArrayList<String>();
+        List<Salary> salaries = new ArrayList<Salary>();
 
 
 
 
         Employee employee =  new Employee(name,surname,birthDate,personalIdentityNumber,idCardNumber,employedSince,
-                new JobPosition(employedSince,"",jobPosition,department),salary+" "+currencyComboBox.getValue(),
-                phoneNumber,contractType,
-                new Address(country,city,street,houseNumber,zipCode), LoginService.loggedUser.getUsername()
-        );
+                new JobPosition(employedSince,"",jobPosition,department),salary+" "+currencyComboBox.getValue(),contractType,
+                new Address(country,city,street,houseNumber,zipCode), qual ,salaries, LoginService.loggedUser.getUsername()
+        ,phoneNumber);
 
         employee.setId(EmployeeTableViewController.selectedEmployee.getId());
         DBConnector.getDatastore().save(employee);
@@ -440,7 +442,7 @@ public class ViewEmployeeInfoController implements Initializable {
         }
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(MainStage.mainStage.getScene().getWindow());
+        stage.initOwner(addEmployeeButton.getScene().getWindow());
         stage.setScene(new Scene(root));
         stage.show();
     }
