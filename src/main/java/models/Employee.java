@@ -98,7 +98,13 @@ public class Employee implements DatabaseObject {
     }
 
 
+    public LinkedList<Salary> getSalaries() {
+        return salaries;
+    }
 
+    public void setSalaries(LinkedList<Salary> salaries) {
+        this.salaries = salaries;
+    }
 
     public void setQualifications(List<String> qualifications) {
         this.qualifications = qualifications;
