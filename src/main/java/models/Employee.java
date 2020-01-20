@@ -8,6 +8,7 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class Employee implements DatabaseObject {
     private Address address;
     private LinkedList<JobPosition> careerPath;                                     //nie dodane do toDocument
     private LinkedList<Rating> ratings;                 //nie dodane do toDocument
-    private List<String> qualifications;                   //nie dodane do toDocument
+    private List<String> qualifications = new ArrayList<>();                   //nie dodane do toDocument
 
     public Employee() {
     }
@@ -57,7 +58,7 @@ public class Employee implements DatabaseObject {
         this.birthDate = birthDate;
     }
 
-    public Employee(String name, String surname, String birthDate, String personalIdentityNumber,String idCardNumber, String employedSince, JobPosition jobPosition,String salary,String contractType, Address address,String addedBy) {
+    public Employee(String name, String surname, String birthDate, String personalIdentityNumber,String idCardNumber, String employedSince, JobPosition jobPosition,String salary,String contractType, Address address,List<String> qual, String addedBy) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
@@ -69,6 +70,7 @@ public class Employee implements DatabaseObject {
         this.contractType=contractType;
         this.addedBy=addedBy;
         this.salary=salary;
+        this.qualifications = qual;
     }
 
 
@@ -210,6 +212,10 @@ public class Employee implements DatabaseObject {
     public void setRatings(LinkedList<Rating> ratings) {
         this.ratings = ratings;
     }
+
+    public List<String> getQualifications(){ return qualifications;}
+
+    public void setQualifications(){ this.qualifications = qualifications;}
 
     //</editor-fold>
 

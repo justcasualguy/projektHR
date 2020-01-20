@@ -8,6 +8,8 @@ import javafx.scene.control.TreeView;
 import models.Employee;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class employeeQualificationMenuController implements Initializable
@@ -26,11 +28,22 @@ public class employeeQualificationMenuController implements Initializable
 
      public void sendEmployee(Employee e)
      {
+         List<String> s = new ArrayList<>();
+         List<String> qual = e.getQualifications();
+
+         s.add("Test");
          TreeItem<String> root = new TreeItem<>(e.getName() + " " + e.getSurname());
-         TreeItem<String> itemChild = new TreeItem<>(e.getContractType());
-         TreeItem<String> itemChild2 = new TreeItem<>(e.getEmployedSince());
-         TreeItem<String> itemChild3 = new TreeItem<>(e.getSalary());
-         root.getChildren().addAll(itemChild, itemChild2, itemChild3);
+         if(qual.size() == 0)
+         {
+             root.getChildren().add(new TreeItem<>("Brak Kwalifikacji"));
+         }
+         else
+         {
+             for(String item : qual)
+             {
+                 root.getChildren().add(new TreeItem<>(item));
+             }
+         }
          qualificationTreeView.setRoot(root);
      }
 

@@ -1,17 +1,24 @@
 package services.controllers;
 
 import gui.MainStage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.Employee;
+import models.User;
 import services.LoginService;
+import services.dbconnector.DBConnector;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,9 +61,28 @@ private LoginController loginController;
     @FXML
     private CheckBox nightMode;
 
+    @FXML
+    private PieChart pieChart;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         whoIsLoggedIn.setText(LoginService.loggedUser.getUsername());
+        final ObservableList<Employee> employees = FXCollections.observableArrayList();
+        final ObservableList<User> admins = FXCollections.observableArrayList();
+
+        employees.addAll(DBConnector.getCollectionAsList(Employee.class));
+        admins.addAll(DBConnector.getCollectionAsList(User.class));
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Pracownicy", employees.size()),
+                new PieChart.Data("Administratorzy", admins.size()));
+        pieChart.setTitle("Ilość użytkowników aplikacji");
+        pieChart.setData(pieChartData);
+        pieChart.setLabelsVisible(true);
+        pieChart.getData().forEach(data -> {
+            String value = String.format("%.0f", (data.getPieValue()));
+            Tooltip toolTip = new Tooltip(value);
+            Tooltip.install(data.getNode(), toolTip);
+        });
     }
 
     @FXML

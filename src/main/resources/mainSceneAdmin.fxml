@@ -102,21 +102,9 @@
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Untitled Tab 1">
+          <Tab text="Wykres">
                <content>
-                  <BarChart>
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </BarChart>
-               </content>
-            </Tab>
-          <Tab text="Untitled Tab 2">
-               <content>
-                  <PieChart />
+                  <PieChart fx:id="pieChart" />
                </content>
             </Tab>
         </tabs>
