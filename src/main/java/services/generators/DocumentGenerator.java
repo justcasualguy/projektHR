@@ -1,6 +1,7 @@
 package services.generators;
 
 import models.Employee;
+import models.Salary;
 import org.docx4j.openpackaging.exceptions.Docx4JException;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.wml.*;
@@ -71,6 +72,63 @@ public class DocumentGenerator {
         catch(Exception e){}
     }
 
+
+
+    public static void generateEmployeePayslip(Employee employee, Salary salary, String templatePath, String documentName, String parametersDecriberPath){
+
+        HashMap<String, String> parameters; //name, surname,address, pesel,jobposition,salary ,working since
+        String nameParameter = "imie";
+        String surnameParameter = "nazwisko";
+        String grossSalaryParameter  = "brutto";
+        String netSalaryParameter  = "netto";
+        String period = "okres";
+        String tax = "podatek";
+
+        Jc justification = new Jc();
+        justification.setVal(JcEnumeration.CENTER);
+
+        WordprocessingMLPackage template=null;
+        try {
+            template = WordprocessingMLPackage.load(new FileInputStream(new File(templatePath)));
+        }
+        catch (Exception e){
+
+        }
+        List<Object> texts = getAllElementFromObject(template.getMainDocumentPart(), Text.class);
+        for( Object o : texts)
+        {
+            Text t = (Text)o;
+            if(((Text)o).getValue().equals(nameParameter))
+                ((Text) o).setValue(employee.getName());
+
+            else if(((Text)o).getValue().equals(surnameParameter)) {
+                ((Text) o).setValue(employee.getSurname());
+//                ((P) ((R) ((Text) o).getParent()).getParent()).getPPr().setJc(justification);
+            }
+
+            else  if(((Text)o).getValue().equals(grossSalaryParameter))
+                ((Text) o).setValue(salary.getSalary());
+            else  if(((Text)o).getValue().equals(netSalaryParameter))
+              {
+
+                  double d= Double.valueOf(salary.getSalary().split(" ")[0].replace(",","."));
+                  d=d*0.82;
+
+                  ((Text) o).setValue(Double.valueOf(d).toString().replace(".",",")+" "+salary.getSalary().split(" ")[1]);}
+            else  if(((Text)o).getValue().equals(tax))
+                ((Text) o).setValue("18%");
+
+            else if(((Text)o).getValue().equals(period))
+                ((Text) o).setValue(salary.getBeginPeriodDate()+" - \n"+salary.getEndPeriodDate());
+
+        }
+        try {
+            String path = String.format("%s %s %s payslip.docx",employee.getName(),employee.getSurname(),salary.getBeginPeriodDate());
+            writeDocxToStream(template, path);
+        }
+        catch(Exception e){}
+
+    }
 
 
     private static List<Object> getAllElementFromObject(Object obj, Class<?> toSearch) {

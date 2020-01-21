@@ -14,7 +14,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import models.Salary;
+import services.generators.DocumentGenerator;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,6 +34,8 @@ public class EmployeeSalariesMenuController implements Initializable {
     @FXML
     private Button exitButton;
 
+    @FXML
+    private Button genPaySlip;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -76,6 +80,14 @@ public class EmployeeSalariesMenuController implements Initializable {
     stage.setOnHiding( event -> refreshListView());
     stage.show();
 
+    }
+
+    @FXML
+    void paySlipgen(){
+        if(salariesListView.getSelectionModel().getSelectedItem()==null)
+            return;
+        else
+        DocumentGenerator.generateEmployeePayslip(EmployeeTableViewController.selectedEmployee,(Salary)salariesListView.getSelectionModel().getSelectedItem(),new File("src/main/resources/payslip.docx").getAbsolutePath(),"pasekTest.docs",null);
     }
     @FXML
     void exit(){

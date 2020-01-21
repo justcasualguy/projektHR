@@ -10,7 +10,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Salary;
+import services.Validators;
 import services.dbconnector.DBConnector;
+import services.generators.ErrorGenerator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -82,8 +84,15 @@ public class AddSalarySceneController implements Initializable {
                 "-"+monthEndPeriodTextLabel.getText()+
                 "-"+yearEndPeriodTextLabel.getText();
 
-        EmployeeTableViewController.selectedEmployee.getSalaries().add(new Salary(salaryTextField.getText()+" "+currencyComboBox.getValue(),beginDate,endDate));
 
+        if(!Validators.validateSalary(salaryTextField.getText()))
+        {
+            ErrorGenerator.errorMessage("Błąd wynagrodzenia");
+            return ;
+        }
+
+
+        EmployeeTableViewController.selectedEmployee.getSalaries().add(new Salary(salaryTextField.getText()+" "+currencyComboBox.getValue(),beginDate,endDate));
         DBConnector.getDatastore().save(EmployeeTableViewController.selectedEmployee);
        cancel();
 

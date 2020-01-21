@@ -44,6 +44,7 @@ public class Test {
                 new Address("Polska", "Warszawa", "Przeworska", "3", "21-530"),
                 null, null);
         String templatePath = "C:\\Users\\kubac\\Desktop\\Generowanie dokumentow\\test.docx";
+
         String documentName = "test2.docx";
 
 
