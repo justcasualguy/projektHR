@@ -33,4 +33,30 @@ public class ErrorGenerator
         window.showAndWait();
 
     }
+
+    public static void errorMessageWithTitle(String error,String title)
+    {
+        Stage window = new Stage();
+
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setMinWidth(300);
+        window.setTitle(title);
+
+        Label errorMessage = new Label();
+        errorMessage.setText(error);
+        Button close = new Button("Zamknij");
+        close.setOnAction(e -> window.close());
+
+        VBox v = new VBox(20);
+        v.getChildren().addAll(errorMessage, close);
+        v.setAlignment(Pos.CENTER);
+
+
+        Scene scene = new Scene(v);
+        window.setScene(scene);
+        window.showAndWait();
+
+    }
+
+
 }

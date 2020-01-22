@@ -73,6 +73,7 @@ public class employeeQualificationMenuController implements Initializable
         stage.initOwner(addQualificationButton.getScene().getWindow());
         stage.setScene(new Scene(root));
         stage.setOnHiding(event -> refreshView());
+        stage.setTitle("Dodaj kwalifikacje");
         stage.show();
     }
 

@@ -16,6 +16,7 @@ import models.Salary;
 import services.LoginService;
 import services.Validators;
 import services.dbconnector.DBConnector;
+import services.generators.ErrorGenerator;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -143,55 +144,56 @@ public class AddEmployeeController implements Initializable {
 
         if(!Validators.validateDate(birthDate)) {
             messageLabel.setText("Err: data urodzenia");
-           messageLabel.setVisible(true);
+            ErrorGenerator.errorMessageWithTitle("Niepoprawna data urodzenia","Błąd");
             return;
         }
 
         if(!Validators.validateDate(employedSince)) {
-            messageLabel.setText("Err: data zatrudnienia");
-            messageLabel.setVisible(true);
+
+            ErrorGenerator.errorMessageWithTitle("Niepoprawna data zatrudnienia","Błąd");
             return;
         }
 
         if(!Validators.validateName(name)){
-            messageLabel.setText("Err: imie");
-            messageLabel.setVisible(true);
+
+            ErrorGenerator.errorMessageWithTitle("Niepoprawne imię","Błąd");
             return;
         }
         if(!Validators.validateSurname(surname)){
-            messageLabel.setText("Err: nazwisko");
-            messageLabel.setVisible(true);
+
+            ErrorGenerator.errorMessageWithTitle("Niepoprawne nazwisko","Błąd");
             return;
         }
 
         if(!Validators.validatePhone(phoneNumber)){
-            messageLabel.setText("Err: numer telefonu");
-            messageLabel.setVisible(true);
+            ErrorGenerator.errorMessageWithTitle("Niepoprawny numer telefonu","Błąd");
+
             return;
         }
 
         if(!Validators.validateSalary(salary)){
-            messageLabel.setText("Err: wynagrodzenie");
-            messageLabel.setVisible(true);
+            ErrorGenerator.errorMessageWithTitle("Niepoprawna wynagrodzenie","Błąd");
+
             return;
         }
         if(!Validators.validateContractType(contractType)){
-            messageLabel.setText("Err: typ kontraktu");
-            messageLabel.setVisible(true);
+            ErrorGenerator.errorMessageWithTitle("Nie wybramo typu kontraktu","Błąd");
+
             return;
         }
 
-        messageLabel.setText("Dodano");
-        messageLabel.setVisible(true);
+
+
         Employee employee =  new Employee(name,surname,birthDate,personalIdentityNumber,idCardNumber,employedSince,
                 new JobPosition(employedSince,"",jobPosition,department),salary+" "+currencyComboBox.getValue(),contractType,
                 new Address(country,city,street,houseNumber,zipCode), qual ,new ArrayList<Salary>(), LoginService.loggedUser.getUsername()
                 ,phoneNumber);
 
 
+
         DBConnector.getDatastore().save(employee);
 
-
+        ErrorGenerator.errorMessageWithTitle("Dodano pracowika","Sukces");
 
     }
 

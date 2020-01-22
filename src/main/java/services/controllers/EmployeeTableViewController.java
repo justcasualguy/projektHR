@@ -235,7 +235,7 @@ public class EmployeeTableViewController implements Initializable {
         selectedEmployee = findEmployeeTableView.getSelectionModel().getSelectedItem();
         if(selectedEmployee == null)
         {
-            ErrorGenerator.errorMessage("No employee selected! Please select employee.");
+            ErrorGenerator.errorMessage("Wybierz pracownika.");
             return;
         }
         /*Parent root = null;
@@ -263,7 +263,7 @@ public class EmployeeTableViewController implements Initializable {
         viewEmployeeInfoStage = new Stage();
         viewEmployeeInfoStage.initModality(Modality.WINDOW_MODAL);
         viewEmployeeInfoStage.initOwner(refreshButton.getScene().getWindow());
-
+        viewEmployeeInfoStage.setTitle("Kwalifikacje");
         viewEmployeeInfoStage.setScene(new Scene(root));
         viewEmployeeInfoStage.show();
 

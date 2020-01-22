@@ -11,9 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.User;
-import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.query.Query;
-import org.mongodb.morphia.query.UpdateOperations;
 import services.dbconnector.DBConnector;
 import services.generators.ErrorGenerator;
 
@@ -174,18 +171,18 @@ public class UserTableViewController implements Initializable {
         User selectedUser = findUserTableView.getSelectionModel().getSelectedItem();
         if(selectedUser == null)
         {
-            ErrorGenerator.errorMessage("No user selected! Please select user.");
+            ErrorGenerator.errorMessage("Nie wybrano użytkownika.");
             return;
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Removing user");
-        alert.setContentText("Are you sure you want to remove user: " + selectedUser.getUsername() + "?");
+        alert.setTitle("Usuwanie użytkownika");
+        alert.setContentText("Czy chcesz usunąć użytkownika?: " + selectedUser.getUsername() + "?");
         Optional<ButtonType> answer = alert.showAndWait();
         Alert info = new Alert(Alert.AlertType.INFORMATION);
         if(answer.get() == ButtonType.OK)
         {
             WriteResult wr = DBConnector.getDatastore().delete(selectedUser);
-            info.setContentText("User removed succesfully!");
+            info.setContentText("Usunięto użytkownika!");
             info.show();
             refreshTableView();
         }

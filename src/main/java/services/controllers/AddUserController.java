@@ -4,12 +4,12 @@ import com.mongodb.client.model.Filters;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.User;
 import org.bson.Document;
 import services.LoginService;
 import services.dbconnector.DBConnector;
+import services.generators.ErrorGenerator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -58,21 +58,20 @@ public class AddUserController implements Initializable {
     @FXML
     private RadioButton userRadioButton;
 
-    @FXML
-    private TextField nameTextField;
-
-    @FXML
-    private TextField surnameTextField;
-
-    @FXML
-    private TextField peselTextField;
+//    @FXML
+//    private TextField nameTextField;
+//
+//    @FXML
+//    private TextField surnameTextField;
+//
+//    @FXML
+//    private TextField peselTextField;
 
     @FXML
     public boolean isUsernameAvailable(){
 
         if(usernameLabel.getText().equals("")) {
-            loginErrorLabel.setText(errorEmptyUsername);
-            loginErrorLabel.setVisible(true);
+            ErrorGenerator.errorMessageWithTitle("Login nie może być pusty","Błąd");
             return false;
         }
         Document doc = DBConnector.getDatabase("Projekt")
@@ -80,15 +79,31 @@ public class AddUserController implements Initializable {
                 .find(Filters.eq("username",usernameLabel.getText()))
                 .first();
         if(doc!=null) {
-            loginErrorLabel.setText(errorUsernameTaken);
-            loginErrorLabel.setVisible(true);
+            ErrorGenerator.errorMessageWithTitle("Nazwa użytkownika zajęta","Błąd");
+            return false;
         }
-        else{
-            loginErrorLabel.setTextFill(Color.GREEN);
-            loginErrorLabel.setText(usernameAvailable);
-            loginErrorLabel.setVisible(true);
+     return true;
+
+    }
+
+    @FXML
+    public boolean isUsernameAvailable2(){
+
+        if(usernameLabel.getText().equals("")) {
+            ErrorGenerator.errorMessageWithTitle("Login nie może być pusty","Błąd");
+            return false;
         }
-        return doc==null;
+        Document doc = DBConnector.getDatabase("Projekt")
+                .getCollection("Users")
+                .find(Filters.eq("username",usernameLabel.getText()))
+                .first();
+        if(doc!=null) {
+            ErrorGenerator.errorMessageWithTitle("Nazwa użytkownika zajęta","Błąd");
+            return false;
+        }
+        ErrorGenerator.errorMessageWithTitle("Nazwa użytkownika dostępna","");
+        return true;
+
     }
 
     @FXML
@@ -96,10 +111,8 @@ public class AddUserController implements Initializable {
         if(isUsernameAvailable())
                 if (checkPasswd())
                     if (isEmailValid()) {
-                        DBConnector.getDatastore().save(new User(usernameLabel.getText(), passwdLabel.getText(), emailLabel.getText(), nameTextField.getText(), surnameTextField.getText(), peselTextField.getText(), selectedRole(), LoginService.loggedUser.getUsername()));
-                        System.out.println(selectedRole());
-                        emailErrorLabel.setText("zarejestrowano pomyslnie");
-                        emailErrorLabel.setVisible(true);
+                        DBConnector.getDatastore().save(new User(usernameLabel.getText(), passwdLabel.getText(), emailLabel.getText(), selectedRole(), LoginService.loggedUser.getUsername()));
+                        ErrorGenerator.errorMessageWithTitle("Dodano użytkownika","Sukces");
 
         }
 
@@ -126,24 +139,19 @@ public class AddUserController implements Initializable {
     public boolean isEmailValid(){
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         if(!emailLabel.getText().matches(regex)){
-            emailErrorLabel.setText(errorEmailIncorrect);
-            emailErrorLabel.setVisible(true);
+            ErrorGenerator.errorMessageWithTitle("Niepoprawny email","Błąd");
         }
-        else
-            emailErrorLabel.setText("Poprawny email");
-        emailErrorLabel.setVisible(true);
+
         return emailLabel.getText().matches(regex);
     }
 
     public boolean checkPasswd(){
         if(!passwdLabel.getText().equals(passwdConfirmLabel.getText())) {
-            passwdErrorLabel.setText(errorPasswordConfirmation);
-            passwdErrorLabel.setVisible(true);
+            ErrorGenerator.errorMessageWithTitle("Wprowadzone hasłą się róznią","Błąd");
             return false;
         }
        else if(passwdLabel.getText().equals("")){
-            passwdErrorLabel.setText(errorEmptyPassword);
-            passwdErrorLabel.setVisible(true);
+            ErrorGenerator.errorMessageWithTitle("Hasło nie może być puste","Błąd");
             return false;
         }
        else

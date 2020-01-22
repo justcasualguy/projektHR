@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import models.Salary;
 import services.generators.DocumentGenerator;
+import services.generators.ErrorGenerator;
 
 import java.io.File;
 import java.io.IOException;
@@ -87,9 +88,11 @@ public class EmployeeSalariesMenuController implements Initializable {
     void paySlipgen(){
         if(salariesListView.getSelectionModel().getSelectedItem()==null)
             return;
-        else
-        DocumentGenerator.generateEmployeePayslip(EmployeeTableViewController.selectedEmployee,(Salary)salariesListView.getSelectionModel().getSelectedItem(),new File("src/main/resources/payslip.docx").getAbsolutePath(),"pasekTest.docs",null);
-    }
+        else {
+            DocumentGenerator.generateEmployeePayslip(EmployeeTableViewController.selectedEmployee, (Salary) salariesListView.getSelectionModel().getSelectedItem(), new File("src/main/resources/payslip.docx").getAbsolutePath(), "pasekTest.docs", null);
+            ErrorGenerator.errorMessageWithTitle("Wygenerowano dokument","Sukces");
+        }
+        }
     @FXML
     void exit(){
         Stage stage = (Stage)exitButton.getScene().getWindow();
