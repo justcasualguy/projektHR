@@ -22,7 +22,7 @@
             <Font size="23.0" />
          </font>
       </Text>
-      <TextField alignment="CENTER" layoutX="30.0" layoutY="190.0" style="-fx-background-color: #8AE0FF;" text="Witaj użytkowniku!">
+      <TextField alignment="CENTER" editable="false" layoutX="30.0" layoutY="190.0" style="-fx-background-color: #8AE0FF;" text="Witaj użytkowniku!">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
