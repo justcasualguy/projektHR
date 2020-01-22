@@ -41,7 +41,7 @@
                <graphic>
                   <ImageView fitHeight="77.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@585e4ae1cb11b227491c3393.png" />
+                        <Image url="@seek.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
