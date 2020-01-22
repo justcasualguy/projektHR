@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import models.Employee;
 import services.dbconnector.DBConnector;
 
 public class Main extends Application {
@@ -28,7 +27,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         mainStage= MainStage.mainStage;
         mainStage.setScene(scene);
-        stage.setTitle("FXML Welcome");
+        mainStage.setTitle("Logowanie");
         //stage.setScene(scene);
         mainStage.show();
     }
