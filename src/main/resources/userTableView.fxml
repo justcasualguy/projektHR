@@ -17,9 +17,9 @@
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <TableView fx:id="findUserTableView" layoutX="38.0" layoutY="137.0" prefHeight="309.0" prefWidth="687.0" style="-fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 5px; -fx-background-color: white;">
         <columns>
-          <TableColumn fx:id="usernameColumn" prefWidth="180.0" style="-fx-background-color: #8AE0FF;" text="Nazwa użytkownika" />
-            <TableColumn fx:id="emailColumn" prefWidth="144.0" style="-fx-background-color: #8AE0FF;" text=" Email" />
-            <TableColumn fx:id="roleColumn" prefWidth="172.0" style="-fx-background-color: #8AE0FF;" text="Typ użytkownika" />
+          <TableColumn fx:id="usernameColumn" prefWidth="180.0" text="Nazwa użytkownika" />
+            <TableColumn fx:id="emailColumn" prefWidth="144.0" text=" Email" />
+            <TableColumn fx:id="roleColumn" prefWidth="172.0" text="Typ użytkownika" />
         </columns>
          <contextMenu>
             <ContextMenu>
