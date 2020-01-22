@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.effect.Reflection?>
-<?import javafx.scene.layout.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.MainSceneAdminController">
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.MainSceneAdminController">
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
@@ -46,11 +53,6 @@
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <Region HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets bottom="10.0" />
-               </HBox.margin>
-            </Region>
          </children>
          <BorderPane.margin>
             <Insets />
@@ -63,9 +65,9 @@
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Wykres">
+          <Tab text="Wykres użytkowników">
                <content>
-                  <PieChart fx:id="pieChart" />
+                  <PieChart fx:id="pieChart" style="-fx-background-color: white;" />
                </content>
             </Tab>
         </tabs>
