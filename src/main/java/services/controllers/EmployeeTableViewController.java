@@ -185,18 +185,18 @@ public class EmployeeTableViewController implements Initializable {
         Employee selectedEmployee = findEmployeeTableView.getSelectionModel().getSelectedItem();
         if(selectedEmployee == null)
         {
-            ErrorGenerator.errorMessage("No employee selected! Please select employee.");
+            ErrorGenerator.errorMessage("Niw wybrano pracownika!.");
             return;
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Removing employee");
-        alert.setContentText("Are you sure you want to remove employee: " + selectedEmployee.getName() + "?");
+        alert.setTitle("Usuwanie pracownika");
+        alert.setContentText("Czy na pewno chesz usunąć pracownika: " + selectedEmployee.getName() + "?");
         Optional<ButtonType> answer = alert.showAndWait();
         Alert info = new Alert(Alert.AlertType.INFORMATION);
         if(answer.get() == ButtonType.OK)
         {
             WriteResult wr = DBConnector.getDatastore().delete(selectedEmployee);
-            info.setContentText("Employee removed succesfully!");
+            info.setContentText("Usunięto pracownika!");
             info.show();
             refreshTableView();
         }

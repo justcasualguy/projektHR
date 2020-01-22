@@ -78,6 +78,7 @@ public class EmployeeSalariesMenuController implements Initializable {
     stage.initOwner(exitButton.getScene().getWindow());
     stage.setScene(new Scene(root));
     stage.setOnHiding( event -> refreshListView());
+    stage.setTitle("Dodaj paek wypłaty");
     stage.show();
 
     }

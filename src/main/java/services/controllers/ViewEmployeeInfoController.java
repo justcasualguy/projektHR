@@ -442,8 +442,9 @@ public class ViewEmployeeInfoController implements Initializable {
         }
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(addEmployeeButton.getScene().getWindow());
+        stage.initOwner(cancelButton.getScene().getWindow());
         stage.setScene(new Scene(root));
+        stage.setTitle("Wypłaty");
         stage.show();
     }
 

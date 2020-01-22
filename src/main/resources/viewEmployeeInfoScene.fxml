@@ -5,9 +5,8 @@
 <?import javafx.scene.text.*?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.ViewEmployeeInfoController">
    <children>
-      <Button fx:id="addEmployeeButton" layoutX="310.0" layoutY="624.0" mnemonicParsing="false" text="Dodaj" />
-      <Button fx:id="cancelButton" layoutX="243.0" layoutY="624.0" mnemonicParsing="false" onAction="#cancel" text="Anuluj" />
-      <Label layoutX="226.0" layoutY="14.0" prefHeight="25.0" prefWidth="148.0" text="Infromacje o pracowniku" />
+      <Button fx:id="cancelButton" layoutX="255.0" layoutY="624.0" mnemonicParsing="false" onAction="#cancel" text="Wyjdź" />
+      <Label layoutX="226.0" layoutY="14.0" prefHeight="25.0" prefWidth="148.0" />
       <TextField fx:id="nameTextField" editable="false" layoutX="14.0" layoutY="59.0" text="Jakub" />
       <TextField fx:id="surnameTextField" editable="false" layoutX="14.0" layoutY="112.0" text="Jakub" />
       <TextField fx:id="dayBirthdayTextField" editable="false" layoutX="14.0" layoutY="162.0" prefHeight="25.0" prefWidth="41.0" promptText="dd" text="10" />
@@ -21,11 +20,11 @@
       <Text layoutX="56.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
       <Text layoutX="100.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
       <TextField fx:id="dayEmployedTextField" editable="false" layoutX="266.0" layoutY="61.0" prefHeight="25.0" prefWidth="41.0" promptText="dd" text="10" />
-      <Text layoutX="266.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pracuje od:" />
+      <Text layoutX="266.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data zatrudnienia:" />
       <TextField fx:id="monthEmployedTextField" editable="false" layoutX="313.0" layoutY="61.0" prefHeight="25.0" prefWidth="41.0" promptText="mm" text="10" />
       <TextField fx:id="yearEmployedTextField" editable="false" layoutX="357.0" layoutY="61.0" prefHeight="25.0" prefWidth="59.0" promptText="yyyy" text="2000" />
-      <Text layoutX="430.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
-      <Text layoutX="474.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+      <Text layoutX="309.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+      <Text layoutX="353.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
       <TextField fx:id="jobPositionTextField" editable="false" layoutX="266.0" layoutY="157.0" text="sssss" />
       <Text layoutX="266.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stanowisko:" />
       <TextField fx:id="salaryTextField" editable="false" layoutX="266.0" layoutY="212.0" prefHeight="25.0" prefWidth="115.0" text="2000,00" />
@@ -39,7 +38,6 @@
       <Text layoutX="14.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numer dowodu osobistego:" />
       <TextField fx:id="phoneNumberTextField" editable="false" layoutX="266.0" layoutY="265.0" text="123456789" />
       <Text layoutX="266.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numer telefonu:" />
-      <Label fx:id="messageLabel" layoutX="34.0" layoutY="304.0" text="Error" visible="false" />
       <TextField fx:id="houseNumberTextField" editable="false" layoutX="14.0" layoutY="365.0" text="33" />
       <Text layoutX="14.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nr mieszkania, lokalu:" />
       <TextField fx:id="cityTextField" editable="false" layoutX="14.0" layoutY="419.0" text="mmmm" />
@@ -49,9 +47,7 @@
       <TextField fx:id="zipCodeTextField" editable="false" layoutX="14.0" layoutY="521.0" text="21-333" />
       <Text layoutX="14.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kod pocztowy:" />
       <ComboBox fx:id="currencyComboBox" disable="true" layoutX="387.0" layoutY="212.0" prefHeight="25.0" prefWidth="63.0" promptText="zł" />
-      <Button layoutX="264.0" layoutY="454.0" mnemonicParsing="false" text="Ścieżka awansu" />
       <Button fx:id="salariesButton" layoutX="265.0" layoutY="365.0" mnemonicParsing="false" onAction="#salaries" text="Wypłaty" />
-      <Button layoutX="276.0" layoutY="509.0" mnemonicParsing="false" text="Kwalifikacje pracownika" />
       <Button fx:id="editModeButton" layoutX="16.0" layoutY="563.0" mnemonicParsing="false" onAction="#switchEditMode" text="Tryb Edycdji" />
       <Button fx:id="confirmButton" layoutX="453.0" layoutY="599.0" mnemonicParsing="false" onAction="#confirmChanges" text="Potwierdź" visible="false" />
 

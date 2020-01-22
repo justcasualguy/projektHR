@@ -91,6 +91,7 @@ private LoginController loginController;
         addEmployeeStage.initModality(Modality.WINDOW_MODAL);
         addEmployeeStage.initOwner(MainStage.mainStage.getScene().getWindow());
         addEmployeeStage.setScene(new Scene(root));
+        addEmployeeStage.setTitle("Dodaj pracownika");
         addEmployeeStage.show();
         //MainStage.mainStage.setScene(new Scene(root));
 
@@ -103,6 +104,7 @@ private LoginController loginController;
         tableViewStage.initModality(Modality.WINDOW_MODAL);
         tableViewStage.initOwner(MainStage.mainStage.getScene().getWindow());
         tableViewStage.setScene((new Scene(root)));
+        tableViewStage.setTitle("Pracownicy");
         tableViewStage.show();
     }
     @FXML

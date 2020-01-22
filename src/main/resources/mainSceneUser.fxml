@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.effect.Reflection?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.layout.*?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.MainSceneUserController">
    <bottom>
       <HBox BorderPane.alignment="CENTER">
@@ -38,37 +30,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="removeUserButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Usuń&#10;użytkownika" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="editUserButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Edytuj&#10;użytkownika" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Button>
             <Button fx:id="seekEmployeButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#seekEmployee" prefHeight="46.0" prefWidth="110.0" text="Wyszukaj&#10;pracownika&#10;" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Button">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Button">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Button">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="generateSomethingButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="110.0" text="Generuj coś">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
@@ -89,11 +51,6 @@
                   <Insets bottom="10.0" />
                </HBox.margin>
             </Region>
-            <CheckBox fx:id="nightMode" mnemonicParsing="false" text="NightMode">
-               <HBox.margin>
-                  <Insets right="10.0" top="7.0" />
-               </HBox.margin>
-            </CheckBox>
          </children>
          <BorderPane.margin>
             <Insets />

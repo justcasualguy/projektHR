@@ -92,6 +92,7 @@ private LoginController loginController;
         addUserStage.initModality(Modality.WINDOW_MODAL);
         addUserStage.initOwner(MainStage.mainStage.getScene().getWindow());
         addUserStage.setScene(new Scene(root));
+        addUserStage.setTitle("Dodaj użytkownika");
         addUserStage.show();
         //MainStage.mainStage.setScene(new Scene(root));
 
@@ -104,6 +105,7 @@ private LoginController loginController;
         tableViewStage.initModality(Modality.WINDOW_MODAL);
         tableViewStage.initOwner(MainStage.mainStage.getScene().getWindow());
         tableViewStage.setScene((new Scene(root)));
+        tableViewStage.setTitle("Uzytkownicy");
         tableViewStage.show();
     }
     @FXML
