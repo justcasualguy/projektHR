@@ -1,53 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.*?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.AddEmployeeController">
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="826.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.AddEmployeeController">
    <children>
-      <Button fx:id="addEmployeeButton" layoutX="276.0" layoutY="350.0" mnemonicParsing="false" onAction="#addEmployee" text="Dodaj" />
-      <Button fx:id="cancelButton" layoutX="209.0" layoutY="350.0" mnemonicParsing="false" onAction="#cancel" text="Anuluj" />
-      <Label layoutX="184.0" layoutY="14.0" prefHeight="25.0" prefWidth="148.0" text="Dodawanie pracownika" />
-      <TextField fx:id="nameTextField" layoutX="14.0" layoutY="59.0" text="Jakub" />
-      <TextField fx:id="surnameTextField" layoutX="14.0" layoutY="112.0" text="Jakub" />
-      <TextField fx:id="dayBirthdayTextField" layoutX="14.0" layoutY="162.0" prefHeight="25.0" prefWidth="41.0" promptText="dd" text="10" />
-      <TextField fx:id="streetTextField" layoutX="206.0" layoutY="59.0" text="ulica" />
-      <Text layoutX="18.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imie:" />
-      <Text layoutX="14.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko:" />
-      <Text layoutX="14.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data urodzenia:" />
-      <Text layoutX="206.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ulica:" />
-      <TextField fx:id="monthBirthdayTextField" layoutX="61.0" layoutY="162.0" prefHeight="25.0" prefWidth="41.0" promptText="mm" text="10" />
-      <TextField fx:id="yearBirthdayTextField" layoutX="105.0" layoutY="162.0" prefHeight="25.0" prefWidth="59.0" promptText="yyyy" text="1990" />
+      <Pane layoutY="27.0" opacity="0.5" prefHeight="21.0" prefWidth="826.0" style="-fx-background-color: #8AE0FF;" />
+      <Pane opacity="0.5" prefHeight="21.0" prefWidth="826.0" style="-fx-background-color: #8AE0FF;" />
+      <Pane layoutX="169.0" prefHeight="48.0" prefWidth="485.0" style="-fx-background-color: #8AE0FF;" />
+      <Label layoutX="253.0" prefHeight="45.0" prefWidth="338.0" text="Dodawanie pracownika">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="cancelButton" layoutX="6.0" layoutY="8.0" mnemonicParsing="false" onAction="#cancel" prefHeight="30.0" prefWidth="6.0" style="-fx-background-radius: 100; -fx-background-color: #d63636;" text="X">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="addEmployeeButton" layoutX="769.0" layoutY="7.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="30.0" prefWidth="6.0" style="-fx-background-radius: 100; -fx-background-color: #4ac940;" text="V" textAlignment="JUSTIFY">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="nameTextField" layoutX="23.0" layoutY="109.0" text="Jakub" />
+      <TextField fx:id="surnameTextField" layoutX="23.0" layoutY="182.0" text="Jakub" />
+      <TextField fx:id="dayBirthdayTextField" layoutX="23.0" layoutY="252.0" prefHeight="25.0" prefWidth="41.0" promptText="dd" text="10" />
+      <TextField fx:id="streetTextField" layoutX="321.0" layoutY="109.0" text="ulica" />
+      <Text layoutX="25.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imie:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <Text layoutX="23.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <Text layoutX="23.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data urodzenia:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <Text layoutX="321.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ulica:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <TextField fx:id="monthBirthdayTextField" layoutX="70.0" layoutY="252.0" prefHeight="25.0" prefWidth="41.0" promptText="mm" text="10" />
+      <TextField fx:id="yearBirthdayTextField" layoutX="114.0" layoutY="252.0" prefHeight="25.0" prefWidth="59.0" promptText="yyyy" text="1990" />
       <Text layoutX="56.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
       <Text layoutX="100.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
-      <TextField fx:id="dayEmployedTextField" layoutX="388.0" layoutY="56.0" prefHeight="25.0" prefWidth="41.0" promptText="dd" text="10" />
-      <Text layoutX="388.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pracuje od:" />
-      <TextField fx:id="monthEmployedTextField" layoutX="435.0" layoutY="56.0" prefHeight="25.0" prefWidth="41.0" promptText="mm" text="10" />
-      <TextField fx:id="yearEmployedTextField" layoutX="479.0" layoutY="56.0" prefHeight="25.0" prefWidth="59.0" promptText="yyyy" text="2000" />
-      <Text layoutX="430.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
-      <Text layoutX="474.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
-      <TextField fx:id="jobPositionTextField" layoutX="388.0" layoutY="152.0" text="sssss" />
-      <Text layoutX="388.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stanowisko:" />
-      <TextField fx:id="salaryTextField" layoutX="388.0" layoutY="207.0" prefHeight="25.0" prefWidth="115.0" text="2000,00" />
-      <Text layoutX="388.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wynagrodzenie:" />
-      <ComboBox fx:id="contractTypeComboBox" layoutX="387.0" layoutY="300.0" prefWidth="150.0" promptText="Typ umowy" />
-      <TextField fx:id="departmentTextField" layoutX="388.0" layoutY="103.0" text="dzial" />
-      <Text layoutX="388.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dział:" />
-      <TextField fx:id="personalIdentityNumberTextField" layoutX="14.0" layoutY="213.0" text="123456789" />
-      <Text layoutX="14.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PESEL:" />
-      <TextField fx:id="idCardNumberTextField" layoutX="14.0" layoutY="265.0" text="YOLO" />
-      <Text layoutX="14.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numer dowodu osobistego:" />
-      <TextField fx:id="phoneNumberTextField" layoutX="388.0" layoutY="260.0" text="123456789" />
-      <Text layoutX="388.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numer telefonu:" />
+      <TextField fx:id="dayEmployedTextField" layoutX="601.0" layoutY="109.0" prefHeight="25.0" prefWidth="41.0" promptText="dd" text="10" />
+      <Text layoutX="601.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pracuje od:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <TextField fx:id="monthEmployedTextField" layoutX="648.0" layoutY="109.0" prefHeight="25.0" prefWidth="41.0" promptText="mm" text="10" />
+      <TextField fx:id="yearEmployedTextField" layoutX="692.0" layoutY="109.0" prefHeight="25.0" prefWidth="59.0" promptText="yyyy" text="2000" />
+      <TextField fx:id="jobPositionTextField" layoutX="601.0" layoutY="252.0" text="sssss" />
+      <Text layoutX="601.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stanowisko:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <TextField fx:id="salaryTextField" layoutX="601.0" layoutY="320.0" prefHeight="25.0" prefWidth="115.0" text="2000,00" />
+      <Text layoutX="601.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wynagrodzenie:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <ComboBox fx:id="contractTypeComboBox" layoutX="603.0" layoutY="431.0" prefWidth="150.0" promptText="Typ umowy" style="-fx-background-color: lightgray;" />
+      <TextField fx:id="departmentTextField" layoutX="601.0" layoutY="182.0" text="dzial" />
+      <Text layoutX="601.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dział:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <TextField fx:id="personalIdentityNumberTextField" layoutX="23.0" layoutY="320.0" text="123456789" />
+      <Text layoutX="23.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PESEL:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <TextField fx:id="idCardNumberTextField" layoutX="23.0" layoutY="387.0" text="YOLO" />
+      <Text layoutX="23.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numer dowodu osobistego:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <TextField fx:id="phoneNumberTextField" layoutX="601.0" layoutY="387.0" text="123456789" />
+      <Text layoutX="602.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numer telefonu:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
       <Label fx:id="messageLabel" layoutX="34.0" layoutY="304.0" text="Error" visible="false" />
-      <TextField fx:id="houseNumberTextField" layoutX="206.0" layoutY="108.0" text="33" />
-      <Text layoutX="206.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nr mieszkania, lokalu:" />
-      <TextField fx:id="cityTextField" layoutX="206.0" layoutY="162.0" text="mmmm" />
-      <Text layoutX="210.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Miejscowość:" />
-      <TextField fx:id="countryTextField" layoutX="206.0" layoutY="208.0" text="kkkk" />
-      <Text layoutX="206.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kraj:" />
-      <TextField fx:id="zipCodeTextField" layoutX="206.0" layoutY="264.0" text="21-333" />
-      <Text layoutX="206.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kod pocztowy:" />
-      <ComboBox fx:id="currencyComboBox" layoutX="509.0" layoutY="207.0" prefHeight="25.0" prefWidth="63.0" promptText="zł" />
+      <TextField fx:id="houseNumberTextField" layoutX="321.0" layoutY="182.0" text="33" />
+      <Text layoutX="321.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nr mieszkania, lokalu:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <TextField fx:id="cityTextField" layoutX="321.0" layoutY="252.0" text="mmmm" />
+      <Text layoutX="325.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Miejscowość:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <TextField fx:id="countryTextField" layoutX="321.0" layoutY="320.0" text="kkkk" />
+      <Text layoutX="321.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kraj:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <TextField fx:id="zipCodeTextField" layoutX="321.0" layoutY="387.0" text="21-333" />
+      <Text layoutX="321.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kod pocztowy:">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+      <ComboBox fx:id="currencyComboBox" layoutX="722.0" layoutY="320.0" prefHeight="25.0" prefWidth="63.0" promptText="zł" style="-fx-background-color: lightgray;" />
    </children>
 </Pane>

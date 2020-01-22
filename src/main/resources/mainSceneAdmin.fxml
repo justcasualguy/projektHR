@@ -1,74 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.Reflection?>
-<?import javafx.scene.layout.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.MainSceneAdminController">
-   <bottom>
-      <HBox BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="whoIsLoggedIn" alignment="BOTTOM_LEFT" contentDisplay="CENTER" text="aa">
-               <HBox.margin>
-                  <Insets top="5.0" />
-               </HBox.margin>
+        <?import javafx.scene.chart.PieChart?>
+        <?import javafx.scene.control.Button?>
+        <?import javafx.scene.control.Label?>
+        <?import javafx.scene.image.Image?>
+        <?import javafx.scene.image.ImageView?>
+        <?import javafx.scene.layout.Pane?>
+        <?import javafx.scene.text.Font?>
+
+<Pane prefHeight="514.0" prefWidth="961.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.MainSceneAdminController">
+<children>
+    <Pane prefHeight="57.0" prefWidth="961.0" style="-fx-background-color: #8AE0FF;">
+        <children>
+            <Label fx:id="appName" alignment="CENTER_RIGHT" layoutX="259.0" layoutY="-6.0" prefHeight="69.0" prefWidth="405.0" text="HRTech Application">
+                <font>
+                    <Font name="System Bold" size="36.0" />
+                </font>
             </Label>
-            <Region style="-fx-border-color: grey;" HBox.hgrow="ALWAYS" />
-            <Button fx:id="logOutButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#logout" text="Wyloguj" />
-         </children>
-         <effect>
-            <Reflection />
-         </effect>
-      </HBox>
-   </bottom>
-   <left>
-      <VBox prefHeight="560.0" prefWidth="111.0" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="addUserButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addUser" prefHeight="46.0" prefWidth="110.0" text="Dodaj &#10;użytkownika" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="seekEmployeButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#seekEmployee" prefHeight="46.0" prefWidth="110.0" text="Wyszukaj&#10;pracownika&#10;" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-   </left>
-   <top>
-      <HBox id="test" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="appName" alignment="CENTER_RIGHT" text="HRTech Application">
-               <HBox.margin>
-                  <Insets left="5.0" top="10.0" />
-               </HBox.margin>
-            </Label>
-            <Region HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets bottom="10.0" />
-               </HBox.margin>
-            </Region>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="10.0" />
-         </padding>
-      </HBox>
-   </top>
-   <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-        <tabs>
-          <Tab text="Wykres">
-               <content>
-                  <PieChart fx:id="pieChart" />
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </center>
-</BorderPane>
+        </children>
+    </Pane>
+    <Pane layoutX="-2.0" layoutY="20.0" prefHeight="489.0" prefWidth="212.0" style="-fx-border-color: #8AE0FF; -fx-border-width: 10px;">
+        <children>
+            <Button fx:id="logOutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="340.0" mnemonicParsing="false" onAction="#logout" prefHeight="69.0" prefWidth="130.0" style="-fx-background-color: white;" textOverrun="CLIP">
+                <graphic>
+                    <ImageView fitHeight="87.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@logout.png" />
+                        </image>
+                    </ImageView>
+                </graphic></Button>
+            <Button fx:id="addUserButton" contentDisplay="CENTER" layoutX="54.0" layoutY="204.0" mnemonicParsing="false" onAction="#addUser" prefHeight="105.0" prefWidth="107.0" style="-fx-background-color: white;" textAlignment="CENTER">
+                <graphic>
+                    <ImageView fitHeight="97.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: white;">
+                        <image>
+                            <Image url="@user.png" />
+                        </image>
+                    </ImageView>
+                </graphic></Button>
+            <Button fx:id="seekEmployeButton" contentDisplay="CENTER" layoutX="41.0" layoutY="78.0" mnemonicParsing="false" onAction="#seekEmployee" prefHeight="69.0" prefWidth="130.0" style="-fx-background-color: white;" text="&#10;" textAlignment="CENTER">
+                <graphic>
+                    <ImageView fitHeight="77.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@585e4ae1cb11b227491c3393.png" />
+                        </image>
+                    </ImageView>
+                </graphic></Button>
+        </children>
+    </Pane>
+    <Pane layoutY="478.0" prefHeight="36.0" prefWidth="962.0" style="-fx-background-color: #8AE0FF;">
+        <children>
+            <Label fx:id="whoIsLoggedIn" alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="8.0" layoutY="4.0" prefHeight="27.0" prefWidth="58.0" text="aa" />
+        </children>
+    </Pane>
+    <PieChart fx:id="pieChart" layoutX="314.0" layoutY="67.0" prefHeight="404.0" prefWidth="500.0" style="-fx-background-color: white;" />
+</children>
+</Pane>
+

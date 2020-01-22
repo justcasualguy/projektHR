@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.EmployeeTableViewController">
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="763.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.EmployeeTableViewController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TableView fx:id="findEmployeeTableView" layoutX="38.0" layoutY="137.0" prefHeight="309.0" prefWidth="687.0">
+      <TableView fx:id="findEmployeeTableView" layoutX="38.0" layoutY="137.0" prefHeight="309.0" prefWidth="687.0" style="-fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 5px; -fx-background-color: white;">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="157.0" text="Imię" />
             <TableColumn fx:id="surnameColumn" prefWidth="167.0" text="Nazwisko" />
@@ -24,22 +33,32 @@
               </ContextMenu>
           </contextMenu>
       </TableView>
-      <TextField fx:id="filterField" layoutX="105.0" layoutY="91.0" prefHeight="25.0" prefWidth="348.0" style="-fx-background-color: #E5E7E9;" />
-      <Label layoutX="22.0" layoutY="92.0" text="Wyszukaj">
+      <TextField fx:id="filterField" layoutX="209.0" layoutY="77.0" prefHeight="25.0" prefWidth="348.0" style="-fx-background-color: none; -fx-border-width: 2px; -fx-border-color: black; -fx-border-radius: 10;" />
+      <Label layoutX="105.0" layoutY="77.0" text="Wyszukaj">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Pane layoutY="2.0" prefHeight="51.0" prefWidth="763.0" style="-fx-background-color: #228B22;">
+      <Pane prefHeight="53.0" prefWidth="763.0" style="-fx-background-color: #8AE0FF;">
          <children>
-            <Label layoutX="17.0" layoutY="8.0" text="Pracownicy" textFill="WHITE">
+            <Label layoutX="17.0" layoutY="8.0" text="PRACOWNICY">
                <font>
-                  <Font name="Comic Sans MS Bold Italic" size="25.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Pane layoutY="53.0" prefHeight="6.0" prefWidth="763.0" style="-fx-background-color: #ECF142;" />
-      <Button fx:id="refreshButton" layoutX="559.0" layoutY="91.0" mnemonicParsing="false"  text="Odśwież" visible="false" />
+      <Pane layoutY="53.0" prefHeight="6.0" prefWidth="763.0" style="-fx-background-color: lightgray;" />
+      <Button fx:id="refreshButton" layoutX="559.0" layoutY="91.0" mnemonicParsing="false" text="Odśwież" visible="false" />
+      <ImageView fitHeight="21.0" fitWidth="27.0" layoutX="75.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@585e4ae1cb11b227491c3393.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="717.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@user.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
