@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class T extends Application {
+public class TreeTest extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -17,12 +17,13 @@ public class T extends Application {
 
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("assessmentTest.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/treeTest.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
         primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(false);
         primaryStage.show();
 
     }

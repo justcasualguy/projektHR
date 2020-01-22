@@ -22,6 +22,12 @@ public class User implements DatabaseObject {
     private boolean passwordChangeRequired;
     private String addedBy;
     private String email;
+    private String name;
+    private String surname;
+    private String pesel;
+
+
+
 
 
     public User(){}
@@ -37,7 +43,17 @@ public class User implements DatabaseObject {
 
     }
 
-
+    public User(String username, String password,   String email, String name, String surname, String pesel,String role, String addedBy) {
+        this.username = username;
+        this.password = PasswordHasher.hashPassword(password);
+        this.role = role;
+        registerDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/YYYY"));
+        this.addedBy = addedBy;
+        this.email = email;
+        this.name = name;
+        this.surname = surname;
+        this.pesel = pesel;
+    }
 
     public ObjectId getId() {
         return id;

@@ -8,7 +8,9 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 @Entity(value = "Employees",noClassnameStored = true)
 public class Employee implements DatabaseObject {
@@ -27,18 +29,24 @@ public class Employee implements DatabaseObject {
     private String contractType;
     private String salary;
     private String addedBy;
+    private String phoneNumber;
     @Embedded
     private JobPosition jobPosition;
     @Embedded
     private Address address;
+    @Embedded
+    private List<Salary> salaries = new ArrayList<>();
+
     private LinkedList<JobPosition> careerPath;                                     //nie dodane do toDocument
-    private LinkedList<Rating> ratings;                 //nie dodane do toDocument
-    private LinkedList<Qualification> qualifications;                   //nie dodane do toDocument
+
+    private LinkedList<Assessment> assessments = new LinkedList<>();                 //nie dodane do toDocument
+
+    private List<String> qualifications = new ArrayList<>();                   //nie dodane do toDocument
 
     public Employee() {
     }
 
-    public Employee(String name, String surname, String birthDate, String employedSince, JobPosition jobPosition, Address address, LinkedList<JobPosition> careerPath, LinkedList<Rating> ratings, LinkedList<Qualification> qualifications) {
+    public Employee(String name, String surname, String birthDate, String employedSince, JobPosition jobPosition, Address address, LinkedList<JobPosition> careerPath, LinkedList<Assessment> assessments) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
@@ -46,8 +54,7 @@ public class Employee implements DatabaseObject {
         this.jobPosition = jobPosition;
         this.address = address;
         this.careerPath = careerPath;
-        this.ratings = ratings;
-        this.qualifications = qualifications;
+        this.assessments = assessments;
     }
 
     public Employee(String name, String surname, String birthDate) {
@@ -56,7 +63,7 @@ public class Employee implements DatabaseObject {
         this.birthDate = birthDate;
     }
 
-    public Employee(String name, String surname, String birthDate, String personalIdentityNumber,String idCardNumber, String employedSince, JobPosition jobPosition,String salary,String contractType, Address address,String addedBy) {
+    public Employee(String name, String surname, String birthDate, String personalIdentityNumber,String idCardNumber, String employedSince, JobPosition jobPosition,String salary,String contractType, Address address,List<String> qual,List<Salary> salaries, String addedBy, String phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
@@ -68,15 +75,87 @@ public class Employee implements DatabaseObject {
         this.contractType=contractType;
         this.addedBy=addedBy;
         this.salary=salary;
+        this.qualifications = qual;
+        this.salaries=salaries;
+        this.phoneNumber=phoneNumber;
     }
 
+
+    public Employee(String name, String surname, String birthDate, String personalIdentityNumber,String idCardNumber, String employedSince, JobPosition jobPosition,String salary,String phoneNumber,String contractType, Address address,String addedBy) {
+        this.name = name;
+        this.surname = surname;
+        this.birthDate = birthDate;
+        this.personalIdentityNumber = personalIdentityNumber;
+        this.employedSince = employedSince;
+        this.jobPosition = jobPosition;
+        this.address = address;
+        this.idCardNumber=idCardNumber;
+        this.contractType=contractType;
+        this.addedBy=addedBy;
+        this.salary=salary;
+        this.phoneNumber=phoneNumber;
+    }
     //<editor-fold desc="Getters and setters">
     public ObjectId getId() {
         return id;
     }
 
+
+    public List<Salary> getSalaries() {
+        return salaries;
+    }
+
+    public void setSalaries(List<Salary> salaries) {
+        this.salaries = salaries;
+    }
+
+
+    public void setQualifications(List<String> qualifications) {
+        this.qualifications = qualifications;
+    }
+
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public String getIdCardNumber() {
+        return idCardNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setIdCardNumber(String idCardNumber) {
+        this.idCardNumber = idCardNumber;
+    }
+
+    public String getContractType() {
+        return contractType;
+    }
+
+    public void setContractType(String contractType) {
+        this.contractType = contractType;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    public String getAddedBy() {
+        return addedBy;
+    }
+
+    public void setAddedBy(String addedBy) {
+        this.addedBy = addedBy;
     }
 
     public String getPersonalIdentityNumber() {
@@ -145,21 +224,18 @@ public class Employee implements DatabaseObject {
         this.careerPath = careerPath;
     }
 
-    public LinkedList<Rating> getRatings() {
-        return ratings;
+    public LinkedList<Assessment> getAssessments() {
+        return assessments;
     }
 
-    public void setRatings(LinkedList<Rating> ratings) {
-        this.ratings = ratings;
+    public void setAssessments(LinkedList<Assessment> assessments) {
+        this.assessments = assessments;
     }
 
-    public LinkedList<Qualification> getQualifications() {
-        return qualifications;
-    }
+    public List<String> getQualifications(){ return qualifications;}
 
-    public void setQualifications(LinkedList<Qualification> qualifications) {
-        this.qualifications = qualifications;
-    }
+    public void setQualifications(){ this.qualifications = qualifications;}
+
     //</editor-fold>
 
     @Override

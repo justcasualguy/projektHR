@@ -74,4 +74,9 @@ public class Address implements DatabaseObject {
                .append("zipcode",zipcode);
 
     }
+
+    @Override
+    public String toString() {
+        return street+' '+houseNumber+ ' '+ city;
+    }
 }

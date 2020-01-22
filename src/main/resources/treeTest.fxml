@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.Pane?>
+<Pane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.TreeTestController" >
+<children>
+   <TreeView prefHeight="325.0" prefWidth="439.0" />
+</children>
+</Pane>

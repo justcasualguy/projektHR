@@ -1,40 +1,55 @@
-import services.Validators;
+import models.Address;
+import models.Employee;
+import models.JobPosition;
+import org.docx4j.openpackaging.exceptions.Docx4JException;
+import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
+import org.docx4j.wml.ContentAccessor;
+import services.generators.DocumentGenerator;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
+import javax.xml.bind.JAXBElement;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Test {
 
-    public static boolean isValid(String dateStr) {
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        sdf.setLenient(false);
-        try {
-            sdf.parse(dateStr);
-            System.out.println(sdf);
-        } catch (ParseException e) {
-            return false;
+
+    private static List<Object> getAllElementFromObject(Object obj, Class<?> toSearch) {
+        List<Object> result = new ArrayList<Object>();
+        if (obj instanceof JAXBElement) obj = ((JAXBElement<?>) obj).getValue();
+
+        if (obj.getClass().equals(toSearch))
+            result.add(obj);
+        else if (obj instanceof ContentAccessor) {
+            List<?> children = ((ContentAccessor) obj).getContent();
+            for (Object child : children) {
+                result.addAll(getAllElementFromObject(child, toSearch));
+            }
+
         }
-        return true;
+        return result;
     }
 
-    public static void run(){
-
+    private static void writeDocxToStream(WordprocessingMLPackage template, String target) throws IOException, Docx4JException {
+        File f = new File(target);
+        template.save(f);
     }
+
     public static void main(String[] args) {
-//    String date = "2000-02-30";
-//        String date2 = "2000-02-27";
-//        String date3 = "31/02/2000";
-//    System.out.println(isValid(date));
-//        System.out.println(isValid(date2));
-//        System.out.println(isValid(date3));
-System.out.println(Validators.validatePhone("1234567891"));
-        System.out.println(Validators.validatePhone("12345678"));
 
+        Employee employee = new Employee("Jan", "Kowalski", "nieistotne", "12-12-2018"
+                , new JobPosition("12-12-2018", "12-12-2018", "sprzątacz", "czystości"),
+                new Address("Polska", "Warszawa", "Przeworska", "3", "21-530"),
+                null, null);
+        String templatePath = "C:\\Users\\kubac\\Desktop\\Generowanie dokumentow\\test.docx";
+
+        String documentName = "test2.docx";
+
+
+        DocumentGenerator.generateEmploymentContract(employee, templatePath, documentName, null);
 
 
     }
-
 }

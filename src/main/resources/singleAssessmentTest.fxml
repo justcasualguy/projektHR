@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="281.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="services.controllers.SingleAssessmentTestController">
+   <children>
+      <TextArea fx:id="assessmentTextArea" layoutX="20.0" layoutY="14.0" prefHeight="237.0" prefWidth="344.0" text="Jakiś tesks" />
+      <Label fx:id="infoLabel" layoutX="20.0" layoutY="251.0" text="Dodano 15.01.2010 przez JA" />
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</Pane>

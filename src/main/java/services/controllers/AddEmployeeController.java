@@ -12,11 +12,14 @@ import javafx.stage.Stage;
 import models.Address;
 import models.Employee;
 import models.JobPosition;
+import models.Salary;
 import services.LoginService;
 import services.Validators;
 import services.dbconnector.DBConnector;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddEmployeeController implements Initializable {
@@ -136,6 +139,7 @@ public class AddEmployeeController implements Initializable {
         String contractType = contractTypeComboBox.getValue();
         String birthDate = yearBirthdayTextField.getText()+"-"+monthBirthdayTextField.getText()+"-"+dayBirthdayTextField.getText();
         String employedSince = yearEmployedTextField.getText()+"-"+monthEmployedTextField.getText()+"-"+dayEmployedTextField.getText();
+        List<String> qual = new ArrayList<String>();
 
         if(!Validators.validateDate(birthDate)) {
             messageLabel.setText("Err: data urodzenia");
@@ -159,11 +163,7 @@ public class AddEmployeeController implements Initializable {
             messageLabel.setVisible(true);
             return;
         }
-        if(!Validators.validateCity(city)){
-            messageLabel.setText("Err: miasto");
-            messageLabel.setVisible(true);
-            return;
-        }
+
         if(!Validators.validatePhone(phoneNumber)){
             messageLabel.setText("Err: numer telefonu");
             messageLabel.setVisible(true);
@@ -184,9 +184,10 @@ public class AddEmployeeController implements Initializable {
         messageLabel.setText("Dodano");
         messageLabel.setVisible(true);
         Employee employee =  new Employee(name,surname,birthDate,personalIdentityNumber,idCardNumber,employedSince,
-                new JobPosition(employedSince,"",jobPosition,department),salary+currencyComboBox.getValue(),contractType,
-                new Address(country,city,street,houseNumber,zipCode), LoginService.loggedUser.getUsername()
-                );
+                new JobPosition(employedSince,"",jobPosition,department),salary+" "+currencyComboBox.getValue(),contractType,
+                new Address(country,city,street,houseNumber,zipCode), qual ,new ArrayList<Salary>(), LoginService.loggedUser.getUsername()
+                ,phoneNumber);
+
 
         DBConnector.getDatastore().save(employee);
 

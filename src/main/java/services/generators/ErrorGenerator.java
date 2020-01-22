@@ -1,6 +1,5 @@
 package services.generators;
 
-import gui.MainStage;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,12 +15,12 @@ public class ErrorGenerator
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("ERROR OCCURED");
+        window.setTitle("Wystąpił nieoczekiwany błąd!");
         window.setMinWidth(300);
 
         Label errorMessage = new Label();
         errorMessage.setText(error);
-        Button close = new Button("Close");
+        Button close = new Button("Zamknij");
         close.setOnAction(e -> window.close());
 
         VBox v = new VBox(20);
