@@ -45,7 +45,7 @@ public class User implements DatabaseObject {
 
     public User(String username, String password,   String email, String name, String surname, String pesel,String role, String addedBy) {
         this.username = username;
-        this.password = password;
+        this.password = PasswordHasher.hashPassword(password);
         this.role = role;
         registerDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/YYYY"));
         this.addedBy = addedBy;

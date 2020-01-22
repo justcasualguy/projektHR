@@ -21,11 +21,11 @@
       <Label fx:id="emailErrorLabel" layoutX="49.0" layoutY="161.0" text="Podany e-mail jest już zajęty!" textFill="RED" visible="false" />
       <RadioButton fx:id="adminRadioButton" layoutX="110.0" layoutY="358.0" mnemonicParsing="false" text="Administrator" />
       <RadioButton fx:id="userRadioButton" layoutX="13.0" layoutY="358.0" mnemonicParsing="false" text="Użytkownik" />
-      <TextField fx:id="nameLabel" layoutX="15.0" layoutY="226.0" prefHeight="25.0" prefWidth="158.0" />
+      <TextField fx:id="nameTextField" layoutX="15.0" layoutY="226.0" prefHeight="25.0" prefWidth="158.0" />
       <Text layoutX="15.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię" />
-      <TextField fx:id="surnameLabel" layoutX="15.0" layoutY="273.0" prefHeight="25.0" prefWidth="158.0" />
+      <TextField fx:id="surnameTextField" layoutX="15.0" layoutY="273.0" prefHeight="25.0" prefWidth="158.0" />
       <Text layoutX="14.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko" />
       <Text layoutX="16.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pesel" />
-      <TextField fx:id="peselLabel" layoutX="15.0" layoutY="320.0" prefHeight="25.0" prefWidth="158.0" />
+      <TextField fx:id="peselTextField" layoutX="15.0" layoutY="320.0" prefHeight="25.0" prefWidth="158.0" />
    </children>
 </Pane>

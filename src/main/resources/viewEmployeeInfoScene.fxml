@@ -48,7 +48,7 @@
       <Text layoutX="14.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kod pocztowy:" />
       <ComboBox fx:id="currencyComboBox" disable="true" layoutX="387.0" layoutY="212.0" prefHeight="25.0" prefWidth="63.0" promptText="zł" />
       <Button fx:id="salariesButton" layoutX="265.0" layoutY="365.0" mnemonicParsing="false" onAction="#salaries" text="Wypłaty" />
-      <Button fx:id="editModeButton" layoutX="16.0" layoutY="563.0" mnemonicParsing="false" onAction="#switchEditMode" text="Tryb Edycdji" />
+      <Button fx:id="editModeButton" layoutX="16.0" layoutY="563.0" mnemonicParsing="false" onAction="#switchEditMode" text="Tryb Edycji" />
       <Button fx:id="confirmButton" layoutX="453.0" layoutY="599.0" mnemonicParsing="false" onAction="#confirmChanges" text="Potwierdź" visible="false" />
 
    </children>
