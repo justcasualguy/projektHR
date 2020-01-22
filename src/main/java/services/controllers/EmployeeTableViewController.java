@@ -222,6 +222,7 @@ public class EmployeeTableViewController implements Initializable {
         viewEmployeeInfoStage.initOwner(refreshButton.getScene().getWindow());
         viewEmployeeInfoStage.setScene(new Scene(root));
         viewEmployeeInfoStage.setOnHiding( event -> refreshTableView() );
+        viewEmployeeInfoStage.setTitle("Infromacje o pracowniku");
         viewEmployeeInfoStage.show();
         //MainStage.mainStage.setScene(new Scene(root));
 
